@@ -24,7 +24,6 @@
   "dependencies": {
     "near-api-js": "~0.44.2",
     "near-sdk-js": "^0.2.0",
-    "random-js": "^2.1.0",
     "react": "~18.1.0",
     "react-dom": "~18.1.0",
     "regenerator-runtime": "~0.13.9"

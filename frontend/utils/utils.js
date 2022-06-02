@@ -19,14 +19,6 @@ export async function initContract() {
 
   // Getting the Account ID. If still unauthorized, it's just empty string
   window.accountId = window.walletConnection.getAccountId()
-
-  // Initializing our contract APIs by contract name and configuration
-  window.contract = await new Contract(window.walletConnection.account(), "jsvm.testnet", {
-    // View methods are read only. They don't modify the state, but usually return some value.
-    viewMethods: ['view_js_contract'],
-    // Change methods can modify the state. But you don't receive the returned value when called.
-    changeMethods: ['call_js_contract'],
-  })
 }
 
 export function logout() {

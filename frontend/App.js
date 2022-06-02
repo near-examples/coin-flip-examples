@@ -3,7 +3,7 @@ import React from 'react'
 
 import './assets/css/global.css'
 
-import {login, logout, get_points, set_points, flip_coin} from './utils/utils'
+import {login, logout, get_points, flip_coin} from './utils/utils'
 import getConfig from './utils/config'
 
 
@@ -193,7 +193,7 @@ function Notification() {
         {window.accountId}
       </a>
       {' '/* React trims whitespace around tags; insert literal space character when needed */}
-      called method: 'set_greeting' in contract:
+      called method: 'playGame' in contract:
       {' '}
       <a target="_blank" rel="noreferrer" href={`${urlPrefix}/${window.contract.contractId}`}>
         {window.contract.contractId}
