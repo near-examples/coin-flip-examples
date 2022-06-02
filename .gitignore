@@ -1,0 +1,5 @@
+node_modules
+build
+neardev
+yarn.lock
+.parcel-cache/

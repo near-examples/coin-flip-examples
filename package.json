@@ -1,0 +1,47 @@
+{
+  "name": "js-sdk",
+  "version": "1.0.0",
+  "license": "(MIT AND Apache-2.0)",
+  "scripts": {
+    "build": "npm run build:contract && npm run build:web",
+    "build:contract": "near-sdk build",
+    "build:web": "parcel build frontend/index.html --public-url ./",
+    "deploy": "npm run build:contract && rm -r neardev && near js dev-deploy --base64File build/contract.base64 --deposit 1 && export $(cat ./neardev/dev-account.env) && near js call $CONTRACT_NAME init --accountId $CONTRACT_NAME --deposit 1 && echo $CONTRACT_NAME",
+    "start": "npm run deploy && echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open"
+  },
+  "devDependencies": {
+    "@babel/core": "~7.18.2",
+    "@babel/preset-env": "~7.18.2",
+    "@babel/preset-react": "~7.17.12",
+    "env-cmd": "~10.1.0",
+    "near-cli": "~3.3.0",
+    "nodemon": "~2.0.16",
+    "parcel": "^2.6.0",
+    "process": "^0.11.10",
+    "ts-node": "^10.8.0",
+    "typescript": "^4.7.2"
+  },
+  "dependencies": {
+    "near-api-js": "~0.44.2",
+    "near-sdk-js": "^0.2.0",
+    "random-js": "^2.1.0",
+    "react": "~18.1.0",
+    "react-dom": "~18.1.0",
+    "regenerator-runtime": "~0.13.9"
+  },
+  "resolutions": {
+    "@babel/preset-env": "7.13.8"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
