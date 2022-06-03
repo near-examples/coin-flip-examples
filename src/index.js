@@ -1,28 +1,27 @@
 import {NearContract, NearBindgen, call, view, near} from 'near-sdk-js'
 
 @NearBindgen
-class CoinFlip extends NearContract {
+class MyContract extends NearContract {
     constructor() {
         //execute the NEAR Contract's constructor
         super()
-        //set default values for the points
-        this.points = {}
     }
 
     /*
-        Flip a coin. Pass in the side (heads or tails) and a random number will be chosen
-        indicating whether the flip was heads or tails. If you got it right, you get a point.
+       Method to change the state of the contract
     */
     @call
-    flipCoin(side) {
+    changeMethod() {
         /*
             Fill this in
         */
     }
 
-    // View how many points a specific player has
+    /*
+        Method to view the state of the contract
+    */
     @view
-    viewPoints(player) {
+    viewMethod() {
         /*
             Fill this in
         */
