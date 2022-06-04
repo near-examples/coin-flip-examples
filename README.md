@@ -10,6 +10,8 @@ There are several other branches with different completed contracts that you can
 - `coin-flip-finished` contains the finished code for the coin flipping game
 - `coin-flip-hub` contains the finished code for the hub contract.
 
+To test the fully working contract alongside the frontend, switch to the `coin-flip-finished` branch and follow the steps outlined in the [Quickstart](#quick-start) section.
+
 ### Prerequisites
 
 In order to successfully complete this quickstart guide, you'll need to have a few things installed:
