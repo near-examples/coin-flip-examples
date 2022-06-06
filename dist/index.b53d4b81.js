@@ -27420,7 +27420,7 @@ exports.default = App;
 _s(App, "3697tolBny3vfVBKQSn6cHN2ctA=");
 _c = App;
 function Notification() {
-    const { networkId  } = (0, _configDefault.default)("development");
+    const { networkId , contractName  } = (0, _configDefault.default)("development");
     const urlPrefix = `https://explorer.${networkId}.near.org/accounts`;
     return /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("aside", {
         children: [
@@ -27431,48 +27431,39 @@ function Notification() {
                 children: window.accountId
             }, void 0, false, {
                 fileName: "frontend/App.js",
-                lineNumber: 170,
+                lineNumber: 171,
                 columnNumber: 7
             }, this),
             " ",
-            "called method: 'set_greeting' in contract:",
+            "called method: 'flipCoin' in contract:",
             " ",
-            /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("a", {
-                target: "_blank",
-                rel: "noreferrer",
-                href: `${urlPrefix}/${window.contract.contractId}`,
-                children: window.contract.contractId
-            }, void 0, false, {
-                fileName: "frontend/App.js",
-                lineNumber: 178,
-                columnNumber: 7
-            }, this),
+            contractName,
             /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("footer", {
                 children: [
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: "\u2714 Succeeded"
                     }, void 0, false, {
                         fileName: "frontend/App.js",
-                        lineNumber: 182,
+                        lineNumber: 181,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, _jsxDevRuntime.jsxDEV)("div", {
                         children: "Just now"
                     }, void 0, false, {
                         fileName: "frontend/App.js",
-                        lineNumber: 183,
+                        lineNumber: 182,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "frontend/App.js",
-                lineNumber: 181,
+                lineNumber: 180,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "frontend/App.js",
-        lineNumber: 169,
+        lineNumber: 170,
         columnNumber: 10
     }, this);
 }
@@ -28089,17 +28080,7 @@ async function initContract() {
     }, nearConfig)); // Initializing Wallet based Account. It can work with NEAR testnet wallet that
     // is hosted at https://wallet.testnet.near.org
     window.walletConnection = new (0, _nearApiJs.WalletConnection)(near); // Getting the Account ID. If still unauthorized, it's just empty string
-    window.accountId = window.walletConnection.getAccountId(); // Initializing our contract APIs by contract name and configuration
-    window.contract = await new (0, _nearApiJs.Contract)(window.walletConnection.account(), "jsvm.testnet", {
-        // View methods are read only. They don't modify the state, but usually return some value.
-        viewMethods: [
-            "view_js_contract"
-        ],
-        // Change methods can modify the state. But you don't receive the returned value when called.
-        changeMethods: [
-            "call_js_contract"
-        ]
-    });
+    window.accountId = window.walletConnection.getAccountId();
 }
 function logout() {
     window.walletConnection.signOut(); // reload page
@@ -30926,8 +30907,8 @@ Object.defineProperty(exports, "BinaryReader", {
 
 },{"borsh":"4JCmN"}],"4JCmN":[function(require,module,exports) {
 "use strict";
-var global = arguments[3];
 var Buffer = require("buffer").Buffer;
+var global = arguments[3];
 var __createBinding = this && this.__createBinding || (Object.create ? function(o, m, k, k2) {
     if (k2 === undefined) k2 = k;
     Object.defineProperty(o, k2, {
@@ -41615,8 +41596,8 @@ async function signTransaction(...args) {
 exports.signTransaction = signTransaction;
 
 },{"buffer":"fCgem","js-sha256":"ahVaM","./utils/enums":"kjmPo","borsh":"4JCmN","./utils/key_pair":"kBQFP"}],"ahVaM":[function(require,module,exports) {
-var global = arguments[3];
 var process = require("process");
+var global = arguments[3];
 /**
  * [js-sha256]{@link https://github.com/emn178/js-sha256}
  *
@@ -44259,7 +44240,7 @@ module.exports = function() {
 };
 
 },{"u3":"dIyaj","./prepareStackTrace":"85RZD"}],"9VuTo":[function(require,module,exports) {
-const CONTRACT_NAME = "dev-1654189750878-54281432706351";
+const CONTRACT_NAME = "dev-1654530822025-29564725742659";
 function getConfig(env) {
     switch(env){
         case "production":
@@ -44295,7 +44276,7 @@ function getConfig(env) {
             return {
                 networkId: "local",
                 nodeUrl: "http://localhost:3030",
-                keyPath: `${"/Users/benjaminkurrek"}/.near/validator_key.json`,
+                keyPath: `${"/Users/joshford"}/.near/validator_key.json`,
                 walletUrl: "http://localhost:4000/wallet",
                 contractName: CONTRACT_NAME
             };
