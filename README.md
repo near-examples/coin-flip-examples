@@ -66,9 +66,10 @@ npm run start
 ├── frontend
 │   ├── App.js
 │   ├── assets
+│   ├── config.js
 │   ├── index.html
 │   ├── index.js
-│   └── utils
+│   └── utils.js
 ├── src
 │   └── index.js  <------[ Smart Contract ]
 ├── babel.config.json
