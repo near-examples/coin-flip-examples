@@ -19,6 +19,7 @@
   - [Front end](#front-end)
 - [Example Game](#example-game)
 - [Help](#help)
+- [Feedback](#feedback)
 
 ---
 
@@ -112,7 +113,7 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 
 ## Example Game
 
-> There are several other branches with different completed contracts that you can use as reference:
+> In this example repo there are several other branches with different completed contracts that you can use to help you learn:
 
 - `coin-flip-skeleton` contains the skeleton code for the coin flipping game
 - `coin-flip-finished` contains the finished code for the coin flipping game
@@ -122,12 +123,22 @@ The actual on-chain interactions take place in the `flip_coin` and `get_points` 
 
 To test the fully working contract alongside the frontend, switch to the `coin-flip-finished` branch and follow the steps outlined in the [Quickstart](#quick-start) section.
 
+---
+
+## Feedback
+
+> Help us enhance our JavaScript SDK and participate in its development process!
+
+- Visit our [GitHub discussions](https://github.com/near/near-sdk-js/discussions) and give us your feedback!
+- Join one of our monthly [Developer Tools Community Meetings](http://near.ai/tooling-meetings) and give us your feedback or ask some questions!
+
+---
 
 ## HELP
 
-## Starting from scratch
+> Stuck and need help? There are several ways we can assist you!
 
-If you don't want to use the template and instead start from scratch, the [Enclave Quickstart](https://docs.near.org/docs/develop/contracts/js/enclave-quickstart) guide found in docs runs you through how to create your own JavaScript smart contract environment in a couple very easy steps. In the tutorial, you'll learn how to create a simple contract for setting and getting a greeting message on-chain.
-
-
+- Post a question in #dev-support channel on Discord (http://near.chat). 
+- Get live support with our Developer Relations team (http://near.org/office-hours) (Twice daily)
+- Build from scratch using our [JS SDK Quick Start Guide](https://docs.near.org/docs/develop/contracts/js/enclave-quickstart)) in docs.
 
