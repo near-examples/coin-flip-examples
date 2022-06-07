@@ -2,7 +2,7 @@
     <img src="frontend/assets/img/near_logo_stack_wht.png" width="120" />
 </center>
 
-# NEAR-SDK-JS Quick Start 
+# NEAR-SDK-JS Quick Start
 
 > This example is designed to get you quickly writing and interacting with smart contracts on the NEAR blockchain using JavaScript! 🚀
 
@@ -23,7 +23,6 @@
 
 ---
 
-
 ## Requirements
 
 - [Node.js & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
@@ -32,29 +31,31 @@
 ```bash
 npm i -g near-cli
 ```
+
 ---
 
 ## Quick Start
 
-1) Install dependencies
+1. Install dependencies
 
 ```bash
 npm i
 ```
 
-2) Launch dApp! 🚀
+2. Launch dApp! 🚀
 
 ```bash
 npm run start
 ```
 
 > This script performs the following:
->  - Compiles smart contract located in `./src/index.js` and exports to `./build/contract.base64`
->  - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens. _(If it doesn't already exist)_
->  - Deploys the compiled smart contract to the `dev-account` on NEAR's [`testnet`](https://docs.near.org/docs/concepts/networks#testnet)
->  - Launches a local front-end that is connected to the smart contract (dApp)
+>
+> - Compiles smart contract located in `./src/index.js` and exports to `./build/contract.base64`
+> - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens. _(If it doesn't already exist)_
+> - Deploys the compiled smart contract to the `dev-account` on NEAR's [`testnet`](https://docs.near.org/docs/concepts/networks#testnet)
+> - Launches a local front-end that is connected to the smart contract (dApp)
 
-  ---
+---
 
 ## Exploring the code
 
@@ -81,16 +82,15 @@ npm run start
 
 Here you will see a few dependencies imported from `near-sdk-js` that is used for the creation of a smart contract.
 
-- `NearBindgen` 
-  - This decorator allows the JS code to be compiled to WebAssembly; a format that is compatible with the NEAR blockchain. 
-  
+- `NearBindgen`
+  - This decorator allows the JS code to be compiled to WebAssembly; a format that is compatible with the NEAR blockchain.
 - `NearContract`
   - A constructor class that assists with the compiling of the smart contract and ensures its created using the proper format. The constructor must be called after deploying the contract and can be used to initialize variables stored on the contract with default values.
-  
-- `call` 
-  - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas). 
+- `call`
 
-- `view` 
+  - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas).
+
+- `view`
   - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and do not cost gas.
 
 ## Frontend
@@ -138,7 +138,6 @@ To test the fully working contract alongside the frontend, switch to the `coin-f
 
 > Stuck and need help? There are several ways we can assist you!
 
-- Post a question in #dev-support channel on Discord (http://near.chat). 
+- Post a question in #dev-support channel on Discord (http://near.chat).
 - Get live support with our Developer Relations team (http://near.org/office-hours) (Twice daily)
 - Build from scratch using our [JS SDK Quick Start Guide](https://docs.near.org/docs/develop/contracts/js/enclave-quickstart)) in docs.
-
