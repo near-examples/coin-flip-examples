@@ -29,7 +29,7 @@
 - [near-cli](https://docs.near.org/docs/tools/near-cli) `v3.1.1` or greater
 
 ```bash
-npm i -g near-cli
+npm install -g near-cli
 ```
 
 ---
