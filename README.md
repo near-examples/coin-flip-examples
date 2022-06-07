@@ -39,32 +39,17 @@
 └── README.md
 
 ```
+---
 
 ## Requirements
 
-In order to successfully complete this quickstart guide, you'll need to have a few things installed:
-
-- [Node.js](https://nodejs.org/en/about/)
-- [npm](https://www.npmjs.com/):
+- [Node.js & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [near-cli](https://docs.near.org/docs/tools/near-cli) `v3.1.1` or greater
 
 ```bash
-curl -sL https://deb.nodesource.com/setup_17.x | sudo -E bash -
-sudo apt install build-essential nodejs
-PATH="$PATH"
+npm i -g near-cli
 ```
-
-Ensure that they are both installed by running a version check:
-
-```
-node -v
-npm -v
-```
-
-It's important to have the **newest** version of the [NEAR-CLI](https://docs.near.org/docs/tools/near-cli) installed such that you can make use of the JavaScript features. To install or update, run:
-
-```
-npm install -g near-cli
-```
+---
 
 ## Quick Start
 
