@@ -18,8 +18,8 @@
   - [Smart Contract](#smart-contract)
   - [Front end](#front-end)
 - [Example Game](#example-game)
-- [Help](#help)
 - [Feedback](#feedback)
+- [Help](#help)
 
 ---
 
@@ -91,7 +91,7 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 - `view`
   - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and do not cost gas.
 
-## Frontend
+## Front end
 
 ```bash
 .
