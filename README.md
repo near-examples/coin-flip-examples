@@ -32,6 +32,8 @@
 npm install -g near-cli
 ```
 
+***Note:*** If you are already using `near-cli` please ensure you are using `v3.1.1` or greater by running `near --version`.
+
 ---
 
 ## Quick Start
