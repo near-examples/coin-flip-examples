@@ -89,7 +89,7 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 - `call`
   - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas and must be signed. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas).
 - `view`
-  - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and do not cost gas.
+  - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and an account isn't needed to execute them.
 
 ## Front end
 
