@@ -17,7 +17,7 @@
 - [Exploring the Code](#exploring-the-code)
   - [Smart Contract](#smart-contract)
   - [Front end](#front-end)
-- [Coin Toss Game](#coin-toss-game)
+- [Example Game](#example-game)
 - [Help](#help)
 
 ---
@@ -78,7 +78,7 @@ npm run start
 
 > As illustrated above, the [smart contract](https://en.wikipedia.org/wiki/Smart_contract) is located in `./src/index.js`.
 
-Here you will see a few dependenceis imported from `near-sdk-js` that is used for the creation of a smart contract.
+Here you will see a few dependencies imported from `near-sdk-js` that is used for the creation of a smart contract.
 
 - `NearBindgen` 
   - This decorator allows the JS code to be compiled to WebAssembly; a format that is compatible with the NEAR blockchain. 
@@ -94,16 +94,31 @@ Here you will see a few dependenceis imported from `near-sdk-js` that is used fo
 
 ## Frontend
 
-The core logic is found in the `App.js` file which contains the components rendered on the screen. Before the page is rendered, an init function is [run](https://github.com/near-examples/near-sdk-js-quickstart/blob/e78487030a59d5b7ca015dbbdbab228e542a307e/frontend/index.js#L9) which establishes a connection with NEAR. This logic is found in the `frontend/utils/utils.js` file.
+```bash
+.
+├── App.js      <------- Core logic for the application
+├── assets
+│   ├── css
+│   └── img
+├── config.js   <------- Contract ID & various network environment settings
+├── index.html
+├── index.js
+└── utils.js    <------- Contract initialization, NEAR Wallet setup, & dApp functions
+```
 
-The actual on-chain interactions take place in the `flip_coin` and `get_points` functions defined in `frontend/utils/utils.js`.
+> A simple [React](https://reactjs.org/) front end that uses [`near-api-js`](https://github.com/near/near-api-js) to connect to the NEAR blockchain.
 
+---
 
-## There are several other branches with different completed contracts that you can use as reference:
+## Example Game
+
+> There are several other branches with different completed contracts that you can use as reference:
 
 - `coin-flip-skeleton` contains the skeleton code for the coin flipping game
 - `coin-flip-finished` contains the finished code for the coin flipping game
 - `coin-flip-hub` contains the finished code for the hub contract.
+
+The actual on-chain interactions take place in the `flip_coin` and `get_points` functions defined in `frontend/utils/utils.js`.
 
 To test the fully working contract alongside the frontend, switch to the `coin-flip-finished` branch and follow the steps outlined in the [Quickstart](#quick-start) section.
 

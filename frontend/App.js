@@ -3,8 +3,8 @@ import React from 'react'
 
 import './assets/css/global.css'
 
-import {login, logout, get_points, flip_coin} from './utils/utils'
-import getConfig from './utils/config'
+import {login, logout, get_points, flip_coin} from './utils'
+import getConfig from './config'
 
 
 export default function App() {
