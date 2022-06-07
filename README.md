@@ -39,7 +39,7 @@ npm i -g near-cli
 1. Install dependencies
 
 ```bash
-npm i
+npm install
 ```
 
 2. Launch dApp! 🚀
