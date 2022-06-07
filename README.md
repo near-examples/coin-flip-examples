@@ -53,7 +53,7 @@ npm run start
 > This script performs the following:
 >
 > - Compiles smart contract located in `./src/index.js` and exports to `./build/contract.base64`
-> - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens. _(If it doesn't already exist)_
+> - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens.
 > - Deploys the compiled smart contract to the `dev-account` on NEAR's [`testnet`](https://docs.near.org/docs/concepts/networks#testnet)
 > - Launches a local front-end that is connected to the smart contract (dApp)
 
@@ -92,7 +92,7 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 - `call`
   - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas and must be signed. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas).
 - `view`
-  - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and do not cost gas.
+  - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and an account isn't needed to execute them.
 
 ## Front end
 
