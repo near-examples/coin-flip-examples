@@ -85,11 +85,9 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 - `NearBindgen`
   - This decorator allows the JS code to be compiled to WebAssembly; a format that is compatible with the NEAR blockchain.
 - `NearContract`
-  - A constructor class that assists with the compiling of the smart contract and ensures its created using the proper format. The constructor must be called after deploying the contract and can be used to initialize variables stored on the contract with default values.
+  - A constructing class for creating smart contracts in the proper format
 - `call`
-
   - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas).
-
 - `view`
   - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and do not cost gas.
 
