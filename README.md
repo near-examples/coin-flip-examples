@@ -83,7 +83,7 @@ npm run start
 Here you will see a few dependencies imported from `near-sdk-js` that is used for the creation of a smart contract.
 
 - `NearBindgen`
-  - This decorator allows the JS code to be compiled to WebAssembly; a format that is compatible with the NEAR blockchain.
+  - This decorator allows the JS code to be compiled to a format compatible with the `JSVM`; base64.
 - `NearContract`
   - A constructing class for creating smart contracts in the proper format
 - `call`
