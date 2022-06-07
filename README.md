@@ -4,7 +4,7 @@
 
 # NEAR-SDK-JS Quick Start
 
-> This example is designed to get you quickly writing and interacting with smart contracts on the NEAR blockchain using JavaScript! 🚀
+> This example is designed to quickly get you writing and interacting with smart contracts on the NEAR blockchain using JavaScript! 🚀
 
 [![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/near-examples/near-sdk-js-quickstart)
 
