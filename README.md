@@ -87,7 +87,7 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 - `NearContract`
   - A constructing class for creating smart contracts in the proper format
 - `call`
-  - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas).
+  - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas and must be signed. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas).
 - `view`
   - A decorator that indicates a `view` method or a function that returns values stored on the blockchain. View calls are free and do not cost gas.
 
