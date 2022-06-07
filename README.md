@@ -51,7 +51,7 @@ npm run start
 > This script performs the following:
 >
 > - Compiles smart contract located in `./src/index.js` and exports to `./build/contract.base64`
-> - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens. _(If it doesn't already exist)_
+> - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens.
 > - Deploys the compiled smart contract to the `dev-account` on NEAR's [`testnet`](https://docs.near.org/docs/concepts/networks#testnet)
 > - Launches a local front-end that is connected to the smart contract (dApp)
 
