@@ -6,7 +6,7 @@
     "build": "npm run build:contract && npm run build:web",
     "build:contract": "near-sdk build",
     "build:web": "parcel build frontend/index.html --public-url ./",
-    "deploy": "npm run build:contract && rm -f neardev && near js dev-deploy --base64File build/contract.base64 --deposit 1 && export $(cat ./neardev/dev-account.env) && near js call $CONTRACT_NAME init --accountId $CONTRACT_NAME --deposit 1 && echo $CONTRACT_NAME",
+    "deploy": "npm run build:contract && rm -rf neardev && near js dev-deploy --base64File build/contract.base64 --deposit 1 && export $(cat ./neardev/dev-account.env) && near js call $CONTRACT_NAME init --accountId $CONTRACT_NAME --deposit 1 && echo $CONTRACT_NAME",
     "start": "npm run deploy && echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open"
   },
   "devDependencies": {
