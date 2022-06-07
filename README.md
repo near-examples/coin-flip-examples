@@ -12,16 +12,49 @@
 
 ## Table of Contents
 
-- [Overview](#repository-overview)
 - [Requirements](#requirements)
-- [Setup](#setup)
-- [Getting Started](#getting-started)
+- [Quick Start](#quick-start)
+- [Exploring the Code](#exploring-the-code)
 - [Coin Toss Game](#coin-toss-game)
 - [Support](#support)
 
 ---
 
-## Repository Overview
+
+## Requirements
+
+- [Node.js & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
+- [near-cli](https://docs.near.org/docs/tools/near-cli) `v3.1.1` or greater
+
+```bash
+npm i -g near-cli
+```
+---
+
+## Quick Start
+
+1) Install dependencies
+
+```bash
+npm i
+```
+
+2) Launch dApp! 🚀
+
+```bash
+npm run start
+```
+
+This script performs the following:
+  - Compiles smart contract located in `./src/index.js` to `./build/contract.base64` for deployment
+  - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens. _(If it doesn't already exist)_
+  - Deploys the compiled smart contract to the `dev-account` on NEAR's [`testnet`](https://docs.near.org/docs/concepts/networks#testnet)
+  - Launches a local front-end that is connected to the smart contract (dApp)
+
+  ---
+
+## Exploring the code
+
 
 ```bash
 .
@@ -39,33 +72,6 @@
 └── README.md
 
 ```
----
-
-## Requirements
-
-- [Node.js & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [near-cli](https://docs.near.org/docs/tools/near-cli) `v3.1.1` or greater
-
-```bash
-npm i -g near-cli
-```
----
-
-## Quick Start
-
-To run this project locally, install the dependencies and run the start script. This will build your contract to `build/contract.base64` which will then be deployed to a dev account. The frontend will then be built and started locally.
-
-```
-npm i && npm run start
-```
-
-To simply build the contract:
-
-```
-npm i && npm run build
-```
-
-## Exploring the Code
 
 This template comes in two parts. The frontend code and the smart contract.
 
