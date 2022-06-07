@@ -1,4 +1,4 @@
-import { NearContract, NearBindgen, call, view } from "near-sdk-js";
+import { NearBindgen, NearContract, call, view } from "near-sdk-js";
 
 const DEFAULT_MESSAGE = "Hello";
 
