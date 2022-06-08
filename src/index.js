@@ -15,7 +15,7 @@ class MyContract extends NearContract {
   // that changes state on the blockchain. Change methods cost gas.
   // For more info -> https://docs.near.org/docs/concepts/gas
   @call
-  set_greeting(message) {   
+  set_greeting({ message }) {   
     env.log(`Saving greeting ${message}`);
     this.message = message;
   }
