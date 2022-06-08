@@ -35,12 +35,8 @@ export function login() {
   window.walletConnection.requestSignIn("jsvm.testnet")
 }
 
-export async function flip_coin(side, points){
-  if (points == false) {
-    console.log("First Time Playing!");
-  }
-
-  let args = encodeCall(nearConfig.contractName, 'flipCoin', `["${side}"]`);
+export async function callFunction(value, deposit) {
+  let args = encodeCall(nearConfig.contractName, 'set_greeting', `["${value}"]`);
   let account = window.walletConnection.account();
 
   const result = await account.functionCall({
@@ -48,19 +44,19 @@ export async function flip_coin(side, points){
     methodName: 'call_js_contract',
     args,
     gas: "300000000000000",
-    attachedDeposit: points == false ? parseNearAmount("0.1") : "0"
+    attachedDeposit: parseNearAmount(deposit)
   });
   
   return result
 }
 
-export async function get_points() {
-  let args = encodeCall(nearConfig.contractName, 'viewPoints', `["${window.walletConnection.getAccountId()}"]`);
+export async function viewState() {
+  let args = encodeCall(nearConfig.contractName, 'get_greeting', `["${window.walletConnection.getAccountId()}"]`);
   let account = window.walletConnection.account();
   
-  const points = await account.viewFunction("jsvm.testnet", 'view_js_contract', args, {
+  const value = await account.viewFunction("jsvm.testnet", 'view_js_contract', args, {
     stringify: (val) => val,
   });
   
-  return points
+  return value
 }
