@@ -32,7 +32,7 @@
 npm install -g near-cli
 ```
 
-***Note:*** If you are already using `near-cli` please ensure you are using `v3.1.1` or greater by running `near --version`.
+***Note:*** Already using `near-cli`? Ensure you are using `v3.1.1` or greater by running `near --version`.
 
 ---
 
@@ -88,7 +88,7 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 - `NearBindgen`
   - This decorator allows the JS code to be compiled to a format compatible with the `JSVM`; base64.
 - `NearContract`
-  - A constructing class for creating smart contracts in the proper format
+  - A constructing class for creating smart contracts in the proper format.
 - `call`
   - A decorator that indicates a `change` method or a function that changes state on the blockchain. Note that change methods cost gas and must be signed. For more information see our [documentation on gas](https://docs.near.org/docs/concepts/gas).
 - `view`
