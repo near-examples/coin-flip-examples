@@ -1,5 +1,4 @@
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
-import { functionCall } from 'near-api-js/lib/transaction'
+import { connect, keyStores, WalletConnection } from 'near-api-js'
 import { parseNearAmount } from 'near-api-js/lib/utils/format'
 import getConfig from './config'
 
