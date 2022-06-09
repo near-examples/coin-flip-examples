@@ -3,16 +3,16 @@ import React from 'react'
 
 import './assets/css/global.css'
 
-import {login, logout, get_points, flip_coin} from './utils'
+import {login, logout, viewState, callFunction} from './utils'
 import getConfig from './config'
 
 
 export default function App() {
-  // use React Hooks to store greeting in component state
-  const [points, setPoints] = React.useState()
+  // use React Hooks to store value returned from the contract in component state
+  const [value, setValue] = React.useState()
 
-  // Keeps track of the current selection (heads or tails)
-  const [selection, setSelection] = React.useState("heads")
+  // Keeps track of the current selection (from the dropdown)
+  const [selection, setSelection] = React.useState("Top of the Mornin!")
 
   // after submitting the form, we want to show Notification
   const [showNotification, setShowNotification] = React.useState(false)
@@ -22,10 +22,10 @@ export default function App() {
   React.useEffect(
     () => {
       if(window.walletConnection.isSignedIn()) {
-        // get_points is in near/utils.js
-        get_points()
-        .then(pointsForAccount => {
-          setPoints(pointsForAccount)
+        // viewState is in near/utils.js
+        viewState()
+        .then(returnedValue => {
+          setValue(returnedValue)
         })
       }
     },
@@ -53,9 +53,8 @@ export default function App() {
           Welcome to NEAR!
         </h1>
         <p>
-        Your contract is a simple coin flipping game. If you win, your account gets a point. 
-        If you lose, your account loses a point. This information is stored on the NEAR blockchain. To
-        play you need to sign in using the NEAR Wallet. It is very simple,
+        Your contract stores information on the NEAR blockchain. To
+        start you need to sign in using the NEAR Wallet. It is very simple,
         just use the button below.
         </p>
         <p>
@@ -85,7 +84,7 @@ export default function App() {
               borderBottom: '2px solid var(--secondary)'
             }}
           >
-            Your Points: {points == false ? 0 : points}
+            Greeting: {value}
           </label>
           {' '/* React trims whitespace around tags; insert literal space character when needed */}
           {window.accountId}!
@@ -102,8 +101,7 @@ export default function App() {
 
           try {
             // make an update call to the smart contract
-            // pass the side that the user chose
-            await flip_coin(selection, points)
+            await callFunction(selection, selection.length > value.length ? "0.1" : "0")
           } catch (e) {
             alert(
               'Something went wrong! ' +
@@ -116,10 +114,10 @@ export default function App() {
             fieldset.disabled = false
           }
           
-          // get_points is in near/utils.js
-          get_points()
-          .then(pointsForAccount => {
-            setPoints(pointsForAccount)
+          // viewState is in near/utils.js
+          viewState()
+          .then(returnedValue => {
+            setValue(returnedValue)
           })
 
           // show Notification
@@ -140,7 +138,7 @@ export default function App() {
                 marginBottom: '0.5em'
               }}
             >
-              Flip Coin - Note: your first flip requires a deposit
+              Choose Option
             </label>
             <div style={{ display: 'flex', justifyContent: 'space-evenly' }}>
               <select 
@@ -149,8 +147,8 @@ export default function App() {
               }}
               style={{ borderRadius: '5px 0px 0px 5px', width: "100%"}}
               >
-                <option selected value="heads">Heads</option>
-                <option value="tails">Tails</option>
+                <option selected value="Top of the Mornin!">Top of the Mornin!</option>
+                <option value="Go Team!">Go Team!</option>
               </select>
               <button
                 style={{ borderRadius: '0 5px 5px 0', width: "20%"}}
@@ -165,7 +163,10 @@ export default function App() {
         </p>
         <ol>
           <li>
-            Look in <code>src/App.js</code> and <code>src/utils.js</code> – you'll see <code>get_points</code> and <code>flip_coin</code> being called on the <code>contract</code>. What's this?
+            If your selected greeting is larger in size than the current one, you'll need to pay for <a target="_blank" rel="noreferrer" href="https://docs.near.org/docs/concepts/storage-staking">storage</a> and you'll be redirected to the NEAR wallet.
+          </li>
+          <li>
+            Look in <code>src/App.js</code> and <code>src/utils.js</code> – you'll see <code>viewState</code> and <code>callFunction</code> being called on the <code>contract</code>. What's this?
           </li>
           <li>
             Ultimately, this <code>contract</code> code is defined in <code>src/index.js</code> – this is the source code for your <a target="_blank" rel="noreferrer" href="https://docs.near.org/docs/develop/contracts/overview">smart contract</a>.</li>
@@ -193,7 +194,7 @@ function Notification() {
         {window.accountId}
       </a>
       {' '/* React trims whitespace around tags; insert literal space character when needed */}
-      called method: 'flipCoin' in contract: 
+      called a change method in contract: 
       {' '}
       {contractName}
       <footer>
