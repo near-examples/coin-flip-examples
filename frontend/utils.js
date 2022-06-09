@@ -1,12 +1,8 @@
-import { connect, Contract, keyStores, WalletConnection } from 'near-api-js'
+import { connect, keyStores, WalletConnection } from 'near-api-js'
 import { parseNearAmount } from 'near-api-js/lib/utils/format'
 import getConfig from './config'
 
 const nearConfig = getConfig(process.env.NODE_ENV || 'development')
-
-function encodeCall(contract, method, args) {
-  return Buffer.concat([Buffer.from(contract), Buffer.from([0]), Buffer.from(method), Buffer.from([0]), Buffer.from(args)])
-}
 
 // Initialize contract & set global variables
 export async function initContract() {
@@ -35,28 +31,44 @@ export function login() {
   window.walletConnection.requestSignIn("jsvm.testnet")
 }
 
+/*
+  Calls the contract with the passed in value and passed in deposit
+*/
 export async function callFunction(value, deposit) {
-  let args = encodeCall(nearConfig.contractName, 'set_greeting', `["${value}"]`);
   let account = window.walletConnection.account();
-
+  
+  // Use near-api-js to perform the function call. Since this is using the JS SDK, 
+  // the jsContract boolean must be set to true.
   const result = await account.functionCall({
-    contractId: "jsvm.testnet",
-    methodName: 'call_js_contract',
-    args,
+    contractId: nearConfig.contractName,
+    methodName: 'set_greeting',
+    args: {
+      "message": value
+    },
     gas: "300000000000000",
-    attachedDeposit: parseNearAmount(deposit)
+    attachedDeposit: parseNearAmount(deposit),
+    jsContract: true,
   });
   
   return result
 }
 
+/*
+  Performs a view call to get information from the blockchain
+*/
 export async function viewState() {
-  let args = encodeCall(nearConfig.contractName, 'get_greeting', `["${window.walletConnection.getAccountId()}"]`);
   let account = window.walletConnection.account();
   
-  const value = await account.viewFunction("jsvm.testnet", 'view_js_contract', args, {
-    stringify: (val) => val,
-  });
-  
-  return value
+  // Use near-api-js to perform the call. Since this is using the JS SDK, 
+  // the jsContract boolean must be set to true.
+  const result = await account.viewFunction(
+    nearConfig.contractName, 
+    'get_greeting', 
+    {},
+    { 
+      jsContract: true
+    }
+  )
+
+  return result
 }
