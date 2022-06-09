@@ -163,7 +163,7 @@ export default function App() {
         </p>
         <ol>
           <li>
-            If your selected greeting is larger in size than the current one, you'll need to pay for <a target="_blank" rel="noreferrer" href="https://docs.near.org/docs/concepts/storage-staking">storage</a> and you'll be redirected to the NEAR wallet.
+            If your selected greeting is larger in size than the current one, you'll need to pay for <a target="_blank" rel="noreferrer" href="https://github.com/near-examples/near-sdk-js-quickstart#storage">storage</a> and you'll be redirected to the NEAR wallet.
           </li>
           <li>
             Look in <code>src/App.js</code> and <code>src/utils.js</code> – you'll see <code>viewState</code> and <code>callFunction</code> being called on the <code>contract</code>. What's this?

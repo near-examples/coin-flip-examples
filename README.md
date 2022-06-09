@@ -17,6 +17,7 @@
 - [Exploring the Code](#exploring-the-code)
   - [Smart Contract](#smart-contract)
   - [Front end](#front-end)
+- [Storage](#storage)
 - [Example Game](#example-game)
 - [Feedback](#feedback)
 - [Help](#help)
@@ -111,6 +112,12 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 > A simple [React](https://reactjs.org/) front end that uses [`near-api-js`](https://github.com/near/near-api-js) to connect to the NEAR blockchain.
 
 ---
+
+## Storage
+
+You may have noticed that sometimes you get redirected to the NEAR wallet asking for some $NEAR when changing the status message. This was to cover storage costs on the blockchain through a concept known as [storage staking](https://docs.near.org/docs/concepts/storage-staking).
+
+When developing on NEAR, smart contracts must maintain enough $NEAR tokens on the account to cover data storage at a rate of 1 $NEAR per 100/kb. Using the `near-api-js`, the `attachedDeposit` parameter will allow you to attach a specified amount of $NEAR to cover the extra information you are storing. You do not need to know the _exact_ amount of $NEAR required as if you overpay, you will be refunded the difference. However, if you _do not_ attach enough $NEAR to your call to cover additional storage, the contract call will fail.
 
 ## Example Game
 
