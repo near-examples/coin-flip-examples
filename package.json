@@ -22,7 +22,7 @@
     "typescript": "^4.7.2"
   },
   "dependencies": {
-    "near-api-js": "=0.45.0",
+    "near-api-js": "near/near-api-js#959496a48f58ecaaae8deb8d81bf1a1644c39417",
     "near-sdk-js": "=0.3.0",
     "react": "~18.1.0",
     "react-dom": "~18.1.0",

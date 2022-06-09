@@ -64,13 +64,20 @@ export async function viewState() {
   let args = {
     "message": window.walletConnection.getAccountId()
   }
-  
-  // const value = await account.viewFunction(
-  //   nearConfig.contractName, 
-  //   'get_greeting', 
-  //   args,
-  //   true
-  // )
 
-  return "foo"
+  // const result = await account.viewFunction({
+  //   contractId: nearConfig.contractName,
+  //   methodName: 'get_greeting',
+  //   args: {},
+  //   jsContract: true,
+  // });
+  
+  const result = await account.viewFunction(
+    nearConfig.contractName, 
+    'get_greeting', 
+    {},
+    { jsContract: true}
+  )
+
+  return result
 }
