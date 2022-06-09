@@ -1,14 +1,12 @@
 import { NearBindgen, NearContract, call, view } from "near-sdk-js";
 
-const DEFAULT_MESSAGE = "Hello";
-
 // The NearBindgen decorator allows this code to compile to WebAssembly.
 @NearBindgen
 class MyContract extends NearContract {
   constructor() {
     //execute the NEAR Contract's constructor
     super();
-    this.message = DEFAULT_MESSAGE;
+    this.message = "Hello Web3 World!";
   }
 
   // @call indicates that this is a 'change method' or a function
@@ -25,7 +23,7 @@ class MyContract extends NearContract {
   // and do not cost gas.
   @view
   get_greeting() {
-    env.log(`The current greeting is ${this.message}!`);
+    env.log(`The current greeting is ${this.message}`);
     return this.message;
   }
 }

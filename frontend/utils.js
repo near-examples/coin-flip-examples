@@ -4,17 +4,11 @@ import { parseNearAmount } from 'near-api-js/lib/utils/format'
 import getConfig from './config'
 
 const nearConfig = getConfig(process.env.NODE_ENV || 'development')
-console.log('nearConfig: ', nearConfig)
-
-function encodeCall(contract, method, args) {
-  return Buffer.concat([Buffer.from(contract), Buffer.from([0]), Buffer.from(method), Buffer.from([0]), Buffer.from(args)])
-}
 
 // Initialize contract & set global variables
 export async function initContract() {
   // Initialize connection to the NEAR testnet
   const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig))
-  console.log('near: ', near)
 
   // Initializing Wallet based Account. It can work with NEAR testnet wallet that
   // is hosted at https://wallet.testnet.near.org
@@ -38,17 +32,20 @@ export function login() {
   window.walletConnection.requestSignIn("jsvm.testnet")
 }
 
+/*
+  Calls the contract with the passed in value and passed in deposit
+*/
 export async function callFunction(value, deposit) {
-  let args = {
-    "message": value
-  }
-    //encodeCall(nearConfig.contractName, 'set_greeting', `["${value}"]`);
   let account = window.walletConnection.account();
-
+  
+  // Use near-api-js to perform the function call. Since this is using the JS SDK, 
+  // the jsContract boolean must be set to true.
   const result = await account.functionCall({
     contractId: nearConfig.contractName,
     methodName: 'set_greeting',
-    args: args,
+    args: {
+      "message": value
+    },
     gas: "300000000000000",
     attachedDeposit: parseNearAmount(deposit),
     jsContract: true,
@@ -57,26 +54,21 @@ export async function callFunction(value, deposit) {
   return result
 }
 
+/*
+  Performs a view call to get information from the blockchain
+*/
 export async function viewState() {
-  //let args = encodeCall(nearConfig.contractName, 'get_greeting', `["${window.walletConnection.getAccountId()}"]`);
   let account = window.walletConnection.account();
-
-  let args = {
-    "message": window.walletConnection.getAccountId()
-  }
-
-  // const result = await account.viewFunction({
-  //   contractId: nearConfig.contractName,
-  //   methodName: 'get_greeting',
-  //   args: {},
-  //   jsContract: true,
-  // });
   
+  // Use near-api-js to perform the call. Since this is using the JS SDK, 
+  // the jsContract boolean must be set to true.
   const result = await account.viewFunction(
     nearConfig.contractName, 
     'get_greeting', 
     {},
-    { jsContract: true}
+    { 
+      jsContract: true
+    }
   )
 
   return result
