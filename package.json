@@ -22,8 +22,8 @@
     "typescript": "^4.7.2"
   },
   "dependencies": {
-    "near-api-js": "~0.44.2",
-    "near-sdk-js": "^0.3.0",
+    "near-api-js": "=0.45.1",
+    "near-sdk-js": "=0.3.0",
     "react": "~18.1.0",
     "react-dom": "~18.1.0",
     "regenerator-runtime": "~0.13.9"
