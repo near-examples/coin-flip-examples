@@ -123,7 +123,7 @@ When developing on NEAR, smart contracts must maintain enough $NEAR tokens on th
 
 > In this example repo there are several other branches with different completed contracts that you can use to help you learn:
 
-- `coin-flip-skeleton` contains the skeleton code for the coin flipping game
+- `skeleton` contains the skeleton code for the coin flipping game
 - `coin-flip-finished` contains the finished code for the coin flipping game
 - `coin-flip-hub` contains the finished code for the hub contract.
 
