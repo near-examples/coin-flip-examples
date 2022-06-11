@@ -1,6 +1,6 @@
 import { NearBindgen, NearContract, call, view } from "near-sdk-js";
 
-// The NearBindgen decorator allows this code to compile to WebAssembly.
+// The NearBindgen decorator allows this code to compile to Base64.
 @NearBindgen
 class MyContract extends NearContract {
   constructor() {
