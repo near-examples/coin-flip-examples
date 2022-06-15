@@ -1,5 +1,5 @@
 {
-  "name": "js-sdk",
+  "name": "near-js-sdk-quickstart",
   "version": "1.0.0",
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
@@ -10,23 +10,22 @@
     "start": "npm run deploy && echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open"
   },
   "devDependencies": {
-    "@babel/core": "~7.18.2",
-    "@babel/preset-env": "~7.18.2",
-    "@babel/preset-react": "~7.17.12",
-    "env-cmd": "~10.1.0",
-    "near-cli": "~3.3.0",
-    "nodemon": "~2.0.16",
-    "parcel": "^2.6.0",
-    "process": "^0.11.10",
-    "ts-node": "^10.8.0",
-    "typescript": "^4.7.2"
+    "@babel/core": "7.18.2",
+    "@babel/preset-env": "7.18.2",
+    "@babel/preset-react": "7.17.12",
+    "env-cmd": "10.1.0",
+    "exec-sh": "^0.4.0",
+    "execa": "^6.1.0",
+    "near-cli": "3.3.1",
+    "parcel": "2.6.0",
+    "process": "0.11.10"
   },
   "dependencies": {
-    "near-api-js": "=0.45.1",
-    "near-sdk-js": "=0.3.0",
-    "react": "~18.1.0",
-    "react-dom": "~18.1.0",
-    "regenerator-runtime": "~0.13.9"
+    "near-api-js": "0.45.1",
+    "near-sdk-js": "0.3.0",
+    "react": "18.1.0",
+    "react-dom": "18.1.0",
+    "regenerator-runtime": "0.13.9"
   },
   "resolutions": {
     "@babel/preset-env": "7.13.8"
