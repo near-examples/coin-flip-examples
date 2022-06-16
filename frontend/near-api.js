@@ -56,7 +56,7 @@ export async function viewBlockchainState() {
 export async function callSmartContractFunction(messageArg) {
   let account = window.walletConnection.account();
 
-  // Use near-api-js to perform the function call
+  // Use near-api-js to perform a smart contract function call
   const result = await account.functionCall({
     contractId: nearConfig.contractName,
     methodName: 'set_greeting',
