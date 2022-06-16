@@ -6,7 +6,7 @@ const nearConfig = getConfig(process.env.NODE_ENV || 'development')
 
 // Initialize contract and set global variables
 export async function initContract() {
-  // Initialize connection to the NEAR testnet
+  // Initialize connection to the NEAR blockchain
   const near = await connect(Object.assign({ deps: { keyStore: new keyStores.BrowserLocalStorageKeyStore() } }, nearConfig));
 
   // Initializing Wallet based Account. It can work with NEAR testnet wallet that
