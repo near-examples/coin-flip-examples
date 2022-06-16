@@ -63,7 +63,7 @@ export function EducationalText() {
   return (
     <>
       <p>
-        Look at that! A Simple JavaScript Contract WebApp! Your message is stored on the blockchain. Check it out:
+        Look at that! A Simple JavaScript Smart Contract WebApp! Your message is stored on the blockchain. Check it out:
       </p>
       <ol>
         <li>
