@@ -1,6 +1,6 @@
 const CONTRACT_NAME = process.env.CONTRACT_NAME ||'new-awesome-project'
 
-function getConfig(env) {
+export function getConfig(env) {
   switch (env) {
 
   case 'production':
@@ -12,7 +12,7 @@ function getConfig(env) {
       walletUrl: 'https://wallet.near.org',
       helperUrl: 'https://helper.mainnet.near.org',
       explorerUrl: 'https://explorer.mainnet.near.org',
-      jsvmAccountId: "jsvm.near"
+      jsvmAccountId: 'jsvm.near'
     }
   case 'development':
   case 'testnet':
@@ -23,7 +23,7 @@ function getConfig(env) {
       walletUrl: 'https://wallet.testnet.near.org',
       helperUrl: 'https://helper.testnet.near.org',
       explorerUrl: 'https://explorer.testnet.near.org',
-      jsvmAccountId: "jsvm.testnet"
+      jsvmAccountId: 'jsvm.testnet'
     }
   case 'betanet':
     return {
@@ -61,5 +61,3 @@ function getConfig(env) {
     throw Error(`Unconfigured environment '${env}'. Can be configured in src/config.js.`)
   }
 }
-
-module.exports = getConfig
