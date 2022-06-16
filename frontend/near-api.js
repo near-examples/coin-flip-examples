@@ -42,7 +42,7 @@ export async function viewBlockchainState() {
     'view_greeting',
     {},
     {
-      // For calls to JS SDK set jsCotract:true
+      // For calls to the JSVM set jsCotract:true
       jsContract: true
     }
   );
