@@ -34,7 +34,7 @@ export function SignOutButton() {
 }
 
 export function NearInformation({ message }) {
-  const { networkId, contractName } = getConfig(process.env.NODE_ENV || 'development')
+  const { networkId, contractName } = getConfig(process.env.NODE_ENV || 'testnet')
   const urlPrefix = `https://explorer.${networkId}.near.org/accounts`
 
   return (
