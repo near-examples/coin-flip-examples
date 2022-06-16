@@ -65,7 +65,7 @@ export async function callSmartContractFunction(messageArg) {
     },
     gas: '300000000000000',
     attachedDeposit: parseNearAmount('0.01'),
-    // For calls to JS SDK set jsCotract:true
+    // For calls to the JSVM set jsCotract:true
     jsContract: true,
   });
 
