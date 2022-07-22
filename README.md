@@ -27,7 +27,7 @@
 ## Requirements
 
 - [Node.js & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [near-cli](https://docs.near.org/docs/tools/near-cli) `v3.1.1` or greater
+- [near-cli](https://docs.near.org/tools/near-cli) `v3.1.1` or greater
 
 ```bash
 npm install -g near-cli
@@ -54,7 +54,7 @@ npm run start
 > This script performs the following:
 >
 > - Compiles smart contract located in `./src/index.js` and exports to `./build/contract.base64`
-> - Creates a NEAR [`dev-account`](https://docs.near.org/docs/concepts/account#dev-accounts) with 200 Ⓝ `testnet` tokens.
+> - Creates a NEAR [`dev-account`](https://docs.near.org/concepts/basics/account#dev-accounts) with 200 Ⓝ `testnet` tokens.
 > - Deploys the compiled smart contract to the `dev-account` on NEAR's [`testnet`](https://docs.near.org/docs/concepts/networks#testnet)
 > - Launches a local front-end that is connected to the smart contract (dApp)
 
