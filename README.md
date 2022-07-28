@@ -27,13 +27,11 @@
 ## Requirements
 
 - [Node.js & npm](https://docs.npmjs.com/downloading-and-installing-node-js-and-npm)
-- [near-cli](https://docs.near.org/tools/near-cli) `v3.1.1` or greater
+- [near-cli](https://docs.near.org/tools/near-cli)
 
 ```bash
 npm install -g near-cli
 ```
-
-***Note:*** Already using `near-cli`? Ensure you are using `v3.1.1` or greater by running `near --version`.
 
 ---
 
@@ -53,7 +51,7 @@ npm run start
 
 > This script performs the following:
 >
-> - Compiles smart contract located in `./src/index.js` and exports to `./build/contract.base64`
+> - Compiles smart contract located in `./src/index.ts` and exports to `./build/contract.wasm`
 > - Creates a NEAR [`dev-account`](https://docs.near.org/concepts/basics/account#dev-accounts) with 200 Ⓝ `testnet` tokens.
 > - Deploys the compiled smart contract to the `dev-account` on NEAR's [`testnet`](https://docs.near.org/docs/concepts/networks#testnet)
 > - Launches a local front-end that is connected to the smart contract (dApp)
@@ -72,9 +70,9 @@ npm run start
 │   ├── index.js
 │   └── utils.js
 ├── src
-│   └── index.js  <------[ Smart Contract ]
+│   └── index.ts  <------[ Smart Contract ]
 ├── babel.config.json
-├── LICENSE
+├── tsconfig.json
 ├── package.json
 └── README.md
 
@@ -82,12 +80,12 @@ npm run start
 
 ## Smart Contract
 
-> As illustrated above, the [smart contract](https://en.wikipedia.org/wiki/Smart_contract) is located in `./src/index.js`.
+> As illustrated above, the [smart contract](https://en.wikipedia.org/wiki/Smart_contract) is located in `./src/index.ts`.
 
 Here you will see a few dependencies imported from `near-sdk-js` that is used for the creation of a smart contract.
 
 - `NearBindgen`
-  - This decorator allows the JS code to be compiled to a format compatible with the `JSVM`; base64.
+  - This decorator allows the JS code to be compiled to a format compatible with the NEAR blockchain.
 - `NearContract`
   - A constructing class for creating smart contracts in the proper format.
 - `call`
@@ -113,23 +111,16 @@ Here you will see a few dependencies imported from `near-sdk-js` that is used fo
 
 ---
 
-## Storage
-
-You may have noticed that sometimes you get redirected to the NEAR wallet asking for some $NEAR when changing the status message. This was to cover storage costs on the blockchain through a concept known as [storage staking](https://docs.near.org/docs/concepts/storage-staking).
-
-When developing on NEAR, smart contracts must maintain enough $NEAR tokens on the account to cover data storage at a rate of 1 $NEAR per 100/kb. Using the `near-api-js`, the `attachedDeposit` parameter will allow you to attach a specified amount of $NEAR to cover the extra information you are storing. You do not need to know the _exact_ amount of $NEAR required as if you overpay, you will be refunded the difference. However, if you _do not_ attach enough $NEAR to your call to cover additional storage, the contract call will fail.
-
 ## Example Game
 
 > In this example repo there are several other branches with different completed contracts that you can use to help you learn:
 
 - `skeleton` contains the skeleton code for the coin flipping game
-- `coin-flip-finished` contains the finished code for the coin flipping game
-- `coin-flip-hub` contains the finished code for the hub contract.
+- `coin-flip` contains the finished code for the coin flipping game
 
-The actual on-chain interactions take place in the `flip_coin` and `get_points` functions defined in `frontend/utils/utils.js`.
+The actual on-chain interactions take place in the `callSmartContractFunction` and `viewBlockchainState` functions defined in `frontend/near-api.js`.
 
-To test the fully working contract alongside the frontend, switch to the `coin-flip-finished` branch and follow the steps outlined in the [Quickstart](#quick-start) section.
+To test the fully working coin flipping contract alongside the frontend, switch to the `coin-flip` branch and follow the steps outlined in the [Quickstart](#quick-start) section.
 
 ---
 
