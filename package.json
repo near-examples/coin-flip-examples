@@ -2,11 +2,12 @@
   "name": "near-js-sdk-quickstart",
   "version": "1.0.0",
   "license": "(MIT AND Apache-2.0)",
+  "type": "module",
   "scripts": {
     "build": "npm run build:contract && npm run build:web",
-    "build:contract": "near-sdk build",
+    "build:contract": "near-sdk build src/index.ts",
     "build:web": "parcel build frontend/index.html --public-url ./",
-    "deploy": "npm run build:contract && rm -rf neardev && near js dev-deploy --base64File build/contract.base64 --deposit 1 && export $(cat ./neardev/dev-account.env) && near js call $CONTRACT_NAME init --accountId $CONTRACT_NAME --deposit 1 && echo $CONTRACT_NAME",
+    "deploy": "npm run build:contract && rm -rf neardev && near dev-deploy build/contract.wasm && export $(cat ./neardev/dev-account.env) && near call $CONTRACT_NAME init --accountId $CONTRACT_NAME && echo $CONTRACT_NAME",
     "start": "npm run deploy && echo The app is starting! It will automatically open in your browser when ready && env-cmd -f ./neardev/dev-account.env parcel frontend/index.html --open"
   },
   "devDependencies": {
@@ -20,7 +21,8 @@
   },
   "dependencies": {
     "near-api-js": "0.45.1",
-    "near-sdk-js": "0.3.0",
+    "near-sdk-js": "^0.4.0-2",
+    "lodash-es": "^4.17.21",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "regenerator-runtime": "0.13.9"
