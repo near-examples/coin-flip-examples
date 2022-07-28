@@ -27,8 +27,10 @@ export default function App() {
     callSmartContractFunction(message).then(() =>
       {
         viewBlockchainState()
-          .then(val => setValueFromBlockchain(val));
-        setUiPleaseWait(false)
+          .then(val => {
+            setValueFromBlockchain(val)
+            setUiPleaseWait(false)
+          });
       });
   }
 
