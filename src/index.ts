@@ -32,39 +32,16 @@ class CoinFlip extends NearContract {
     */
     @call
     flipCoin({ side }: { side: string }) {
-        // Get the current player and ensure they're in the game state
-        let player = near.predecessorAccountId();
-        if(!this.points.hasOwnProperty(player)) {
-          this.points[player] = 0;
-        }
-
-        near.log(`${player} chose ${side}`);
-
-        // Cross contract call to the random number hub to get a random number between 0 and 1 (inclusive) as an integer
-        const randomNum = generateRandomNumber();
-
-        // Let's set heads to be 0 and tails to be 1
-        let outcome = randomNum == false ? "heads" : "tails";
-
-        // Check if the result was what the player passed in
-        if(side == outcome) {
-            near.log(`You Get a Point! The result was ${outcome}`);
-            this.points[player] += 1;
-        } else {
-            near.log(`You lost a point... The result was ${outcome}`);
-            this.points[player] = this.points[player] == 0 ? 0 : this.points[player] - 1;
-        }
+        /*
+          Fill this in
+        */
     }
 
     // View how many points a specific player has
     @view
     viewPoints({ player }: { player: string }) {
-        if(this.points.hasOwnProperty(player)) {
-          near.log(`Points for ${player}: ${this.points[player]}`);
-          return this.points[player];
-        }
-
-        near.log(`Points for ${player}: N/A`);
-        return null;
+        /*
+          Fill this in
+        */
     }
 }
