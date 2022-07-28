@@ -39,8 +39,10 @@ export async function viewBlockchainState() {
 
   const currentState = await account.viewFunction(
     nearConfig.contractName,
-    'view_greeting',
-    {},
+    'viewPoints',
+    {
+      player: window.walletConnection.getAccountId()
+    },
   );
 
   return currentState;
@@ -51,13 +53,14 @@ export async function viewBlockchainState() {
 */
 export async function callSmartContractFunction(messageArg) {
   let account = window.walletConnection.account();
+  console.log('messageArg: ', messageArg)
 
   // Use near-api-js to perform a smart contract function call
   const result = await account.functionCall({
     contractId: nearConfig.contractName,
-    methodName: 'set_greeting',
+    methodName: 'flipCoin',
     args: {
-      'message': messageArg
+      'side': messageArg
     },
     gas: '300000000000000',
   });

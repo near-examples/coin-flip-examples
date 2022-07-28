@@ -50,9 +50,9 @@ export function NearInformation({ message }) {
           <code>{contractName}</code>
         </a>
       </li>
-      <li>Current state on the blockchain: <br/>
+      <li>My points: <br/>
         <code>
-          &#123; my_greeting: '{message}' &#125;
+          &#123; points: '{message}' &#125;
         </code>
       </li>
     </ul>
