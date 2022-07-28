@@ -28,8 +28,8 @@ export default function App() {
       {
         viewBlockchainState()
           .then(val => {
-            setValueFromBlockchain(val)
-            setUiPleaseWait(false)
+            setValueFromBlockchain(val);
+            setUiPleaseWait(false);
           });
       });
   }
