@@ -22,6 +22,18 @@ export default function App() {
     }, []);
   }
 
+  const updateMessage = (message) => {
+    setUiPleaseWait(true);
+    callSmartContractFunction(message).then(() =>
+      {
+        viewBlockchainState()
+          .then(val => {
+            setValueFromBlockchain(val);
+            setUiPleaseWait(false);
+          });
+      });
+  }
+
   return (
     <>
       <SignOutButton/>
@@ -29,26 +41,10 @@ export default function App() {
         <h1>{valueFromBlockchain}</h1>
 
         <div className='change'>
-          <button onClick={() => {
-            setUiPleaseWait(true);
-            callSmartContractFunction('Top of the Mornin!').then(_ =>
-              {
-                viewBlockchainState()
-                  .then(val => setValueFromBlockchain(val));
-                setUiPleaseWait(false)
-              });
-          }}>
+          <button onClick={() => updateMessage('Top of the Mornin!')}>
             Change greeting to<br/> <span>'Top of the Mornin!'</span>
           </button>
-          <button onClick={() => {
-            setUiPleaseWait(true);
-            callSmartContractFunction('Go Team!').then(_ =>
-              {
-                viewBlockchainState()
-                  .then(val => setValueFromBlockchain(val));
-                setUiPleaseWait(false)
-              });
-          }}>
+          <button onClick={() => updateMessage('Go Team!')}>
             Change greeting to<br/> <span>'Go Team!'</span>
           </button>
         </div>
