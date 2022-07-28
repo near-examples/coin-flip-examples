@@ -24,12 +24,12 @@ export default function App() {
 
   const updateMessage = (message) => {
     setUiPleaseWait(true);
-              callSmartContractFunction(message).then(() =>
-                {
-                  viewBlockchainState()
-                    .then(val => setValueFromBlockchain(val));
-                  setUiPleaseWait(false)
-                });
+    callSmartContractFunction(message).then(() =>
+      {
+        viewBlockchainState()
+          .then(val => setValueFromBlockchain(val));
+        setUiPleaseWait(false)
+      });
   }
 
   return (
