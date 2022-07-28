@@ -22,7 +22,7 @@ export function signInWithNearWallet() {
   // user's behalf.
   // This works by creating a new access key for the user's account and storing
   // the private key in localStorage.
-  window.walletConnection.requestSignIn('jsvm.testnet');
+  window.walletConnection.requestSignIn(nearConfig.contractName);
 }
 
 export function signOutNearWallet() {
@@ -41,10 +41,6 @@ export async function viewBlockchainState() {
     nearConfig.contractName,
     'view_greeting',
     {},
-    {
-      // For calls to the JSVM set jsCotract:true
-      jsContract: true
-    }
   );
 
   return currentState;
@@ -64,9 +60,6 @@ export async function callSmartContractFunction(messageArg) {
       'message': messageArg
     },
     gas: '300000000000000',
-    attachedDeposit: parseNearAmount('0.01'),
-    // For calls to the JSVM set jsCotract:true
-    jsContract: true,
   });
 
   return result;

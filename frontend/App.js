@@ -31,13 +31,23 @@ export default function App() {
         <div className='change'>
           <button onClick={() => {
             setUiPleaseWait(true);
-            callSmartContractFunction('Top of the Mornin!');
+            callSmartContractFunction('Top of the Mornin!').then(_ =>
+              {
+                viewBlockchainState()
+                  .then(val => setValueFromBlockchain(val));
+                setUiPleaseWait(false)
+              });
           }}>
             Change greeting to<br/> <span>'Top of the Mornin!'</span>
           </button>
           <button onClick={() => {
             setUiPleaseWait(true);
-            callSmartContractFunction('Go Team!');
+            callSmartContractFunction('Go Team!').then(_ =>
+              {
+                viewBlockchainState()
+                  .then(val => setValueFromBlockchain(val));
+                setUiPleaseWait(false)
+              });
           }}>
             Change greeting to<br/> <span>'Go Team!'</span>
           </button>
