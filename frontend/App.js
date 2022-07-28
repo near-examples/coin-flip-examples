@@ -26,30 +26,30 @@ export default function App() {
     <>
       <SignOutButton/>
       <main className={uiPleaseWait && 'please-wait'}>
-        <h1>Flip a Coin</h1>
+        <h1>{valueFromBlockchain}</h1>
 
         <div className='change'>
           <button onClick={() => {
             setUiPleaseWait(true);
-            callSmartContractFunction('heads').then(_ =>
+            callSmartContractFunction('Top of the Mornin!').then(_ =>
               {
                 viewBlockchainState()
                   .then(val => setValueFromBlockchain(val));
                 setUiPleaseWait(false)
               });
           }}>
-            Choose<br/> <span>Heads</span>
+            Change greeting to<br/> <span>'Top of the Mornin!'</span>
           </button>
           <button onClick={() => {
             setUiPleaseWait(true);
-            callSmartContractFunction('tails').then(_ =>
+            callSmartContractFunction('Go Team!').then(_ =>
               {
                 viewBlockchainState()
                   .then(val => setValueFromBlockchain(val));
                 setUiPleaseWait(false)
               });
           }}>
-            Choose<br/> <span>Tails</span>
+            Change greeting to<br/> <span>'Go Team!'</span>
           </button>
         </div>
 
