@@ -17,7 +17,6 @@
 - [Exploring the Code](#exploring-the-code)
   - [Smart Contract](#smart-contract)
   - [Front end](#front-end)
-- [Storage](#storage)
 - [Example Game](#example-game)
 - [Feedback](#feedback)
 - [Help](#help)
