@@ -23,7 +23,7 @@
   "dependencies": {
     "lodash-es": "^4.17.21",
     "near-api-js": "0.45.1",
-    "near-sdk-js": "^0.4.0-4",
+    "near-sdk-js": "^0.4.0-5",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "regenerator-runtime": "0.13.9"
