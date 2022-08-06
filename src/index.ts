@@ -13,7 +13,7 @@ class MyContract extends NearContract {
 
   default() {
     return new MyContract()
-}
+  }
 
   // @call indicates that this is a 'change method' or a function
   // that changes state on the blockchain. Change methods cost gas.
