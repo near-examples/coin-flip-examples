@@ -52,7 +52,7 @@ export function NearInformation({ message }) {
       </li>
       <li>Current state on the blockchain: <br/>
         <code>
-          &#123; my_greeting: '{message}' &#125;
+          &#123; myGreeting: '{message}' &#125;
         </code>
       </li>
     </ul>

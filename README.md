@@ -2,7 +2,7 @@
     <img src="frontend/assets/img/near_logo_stack_wht.png" width="120" />
 </center>
 
-# NEAR-SDK-JS Quick Start
+# NEAR-SDK-JS Workshop Example
 
 > This example is designed to quickly get you writing and interacting with smart contracts on the NEAR blockchain using JavaScript! 🚀
 
