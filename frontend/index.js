@@ -1,15 +1,110 @@
-import React from 'react'
-import { createRoot } from 'react-dom/client'
-import App from './App'
-import { initContract } from './near-api'
+import 'regenerator-runtime/runtime';
+import { Wallet } from './near-wallet';
+import { CoinFlip } from './near-interface';
 
-const reactRoot = createRoot(document.querySelector('#root'));
+// When creating the wallet you can optionally ask to create an access key
+// Having the key enables to call non-payable methods without interrupting the user to sign
+const wallet = new Wallet({ createAccessKeyFor: process.env.CONTRACT_NAME })
 
-window.nearInitPromise = initContract()
-  .then(() => {
-    reactRoot.render(<App />);
-  })
-  .catch(e => {
-    reactRoot.render(<div style={{color: 'red'}}>Error: <code>{e.message}</code></div>);
-    console.error(e);
+// Abstract the logic of interacting with the contract to simplify your flow
+const coinFlip = new CoinFlip({ contractId: process.env.CONTRACT_NAME, walletToUse: wallet });
+
+// Setup on page load
+window.onload = async () => {
+  let isSignedIn = await wallet.startUp();
+
+  if (isSignedIn) {
+    signedInFlow();
+  } else {
+    signedOutFlow();
+  }
+};
+
+// Button clicks
+$ = (e) => document.querySelector(e)
+$('#sign-in-button').onclick = () => { wallet.signIn(); };
+$('#sign-out-button').onclick = () => { wallet.signOut(); };
+$('#choose-heads').onclick = () => { player_choose('heads'); };
+$('#choose-tails').onclick = () => { player_choose('tails'); };
+
+// Executed when the player chooses a side
+async function player_choose(side) {
+  reset_buttons()
+  start_flip_animation()
+  set_status("Asking the contract to flip a coin")
+
+  // Call the smart contract asking to flip a coin
+  let outcome = await coinFlip.flipCoin(side)
+
+  // UI
+  set_status(`The outcome was ${outcome}`)
+  stop_flip_animation_in(outcome)
+
+  if(outcome == side){
+    set_status("You were right, you win a point!")
+    $(`#choose-${side}`).style.backgroundColor = "green"
+  }else{
+    set_status("You were wrong, you lost a point")
+    $(`#choose-${side}`).style.backgroundColor = "red"
+  }
+
+  // Fetch the new score
+  fetchScore();
+}
+
+async function fetchScore(){
+  const score = await coinFlip.getScoreOf(wallet.accountId);
+
+  document.querySelectorAll('[data-behavior=points]').forEach(el => {
+    el.innerText = score;
   });
+}
+
+// Display the signed-out-flow container
+function signedOutFlow() {
+  document.querySelectorAll('#signed-in-flow').forEach(el => {
+    el.style.display = 'none';
+  });
+
+  document.querySelectorAll('#signed-out-flow').forEach(el => {
+    el.style.display = 'block';
+  });
+
+  // animate the coin
+  $('#coin').style.animation = "flip 3.5s ease 0.5s";
+}
+
+// Displaying the signed in flow container and fill in account-specific data
+function signedInFlow() {
+  document.querySelectorAll('#signed-in-flow').forEach(el => {
+    el.style.display = 'block';
+  });
+  document.querySelectorAll('#signed-out-flow').forEach(el => {
+    el.style.display = 'none';
+  });
+  document.querySelectorAll('[data-behavior=account-id]').forEach(el => {
+    el.innerText = wallet.accountId;
+  });
+
+  fetchScore()
+}
+
+// Aux methods to simplify handling the interface
+function set_status(message){
+  document.querySelectorAll('[data-behavior=status]').forEach(el => {
+    el.innerText = message;
+  });
+}
+
+function reset_buttons(){
+  $(`#choose-heads`).style.backgroundColor = "var(--secondary)"
+  $(`#choose-tails`).style.backgroundColor = "var(--secondary)"
+}
+
+function start_flip_animation(){
+  $('#coin').style.animation = 'flip 2s linear 0s infinite';
+}
+
+function stop_flip_animation_in(side){
+  $('#coin').style.animation = `flip-${side} 1s linear 0s 1 forwards`;
+}
