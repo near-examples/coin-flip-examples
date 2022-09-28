@@ -18,39 +18,15 @@ class CoinFlip {
   /*
     Flip a coin. Pass in the side (heads or tails) and a random number will be chosen
     indicating whether the flip was heads or tails. If you got it right, you get a point.
-  */ 
+  */
   @call({})
   flip_coin({ player_guess }: { player_guess: Side  }): Side {
-    // Check who called the method
-    const player = near.predecessorAccountId(); 
-    near.log(`${player} chose ${player_guess}`);
-
-    // Simulate a Coin Flip
-    const outcome = simulateCoinFlip();
-
-    // Get the current player points
-    let player_points: number = (this.points.get(player) || 0) as number
-    
-    // Check if their guess was right and modify the points accordingly
-    if(player_guess == outcome) {
-      near.log(`The result was ${outcome}, you get a point!`);
-      player_points += 1;
-    } else {
-      near.log(`The result was ${outcome}, you lost a point`);
-      player_points = player_points? player_points - 1 : 0;
-    }
-
-    // Store the new points
-    this.points.set(player, player_points)
-
-    return outcome
+    // implement the flip_coin method
   }
 
   // View how many points a specific player has
   @view({})
   points_of({ player }: { player: string }) : number {
-    const points = (this.points.get(player) || 0) as number
-    near.log(`Points for ${player}: ${points}`)
-    return points
+    // implement the points_of
   }
 }
