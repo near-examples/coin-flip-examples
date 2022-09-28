@@ -1,13 +1,11 @@
 import 'regenerator-runtime/runtime';
 import { Wallet } from './near-wallet';
-import { CoinFlip } from './near-interface';
 
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
-const wallet = new Wallet({ createAccessKeyFor: process.env.CONTRACT_NAME })
+const CONTRACT_ADDRESS = process.env.CONTRACT_NAME
+const wallet = new Wallet({ createAccessKeyFor: CONTRACT_ADDRESS })
 
-// Abstract the logic of interacting with the contract to simplify your flow
-const coinFlip = new CoinFlip({ contractId: process.env.CONTRACT_NAME, walletToUse: wallet });
 
 // Setup on page load
 window.onload = async () => {
@@ -34,7 +32,7 @@ async function player_choose(side) {
   set_status("Asking the contract to flip a coin")
 
   // Call the smart contract asking to flip a coin
-  let outcome = await coinFlip.flipCoin(side)
+  let outcome = await wallet.callMethod({ contractId: CONTRACT_ADDRESS, method: 'flip_coin', args: { player_guess: side } });
 
   // UI
   set_status(`The outcome was ${outcome}`)
@@ -53,7 +51,8 @@ async function player_choose(side) {
 }
 
 async function fetchScore(){
-  const score = await coinFlip.getScoreOf(wallet.accountId);
+  console.log(wallet.accountId)
+  const score = await wallet.viewMethod({ contractId: CONTRACT_ADDRESS, method: 'points_of', args: {player: wallet.accountId} });
 
   document.querySelectorAll('[data-behavior=points]').forEach(el => {
     el.innerText = score;
