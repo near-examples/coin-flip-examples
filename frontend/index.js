@@ -6,7 +6,6 @@ import { Wallet } from './near-wallet';
 const CONTRACT_ADDRESS = process.env.CONTRACT_NAME
 const wallet = new Wallet({ createAccessKeyFor: CONTRACT_ADDRESS })
 
-
 // Setup on page load
 window.onload = async () => {
   let isSignedIn = await wallet.startUp();
