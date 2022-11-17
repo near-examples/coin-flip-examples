@@ -14,7 +14,7 @@ function simulateCoinFlip(): Side {
 
 @NearBindgen({})
 class CoinFlip {
-  points: UnorderedMap = new UnorderedMap<number>("points");
+  points: UnorderedMap<number> = new UnorderedMap<number>("points");
 
   /*
     Flip a coin. Pass in the side (heads or tails) and a random number will be chosen
@@ -23,7 +23,7 @@ class CoinFlip {
   @call({})
   flip_coin({ player_guess }: { player_guess: Side }): Side {
     // Check who called the method
-    const player = near.predecessorAccountId();
+    const player: AccountId = near.predecessorAccountId();
     near.log(`${player} chose ${player_guess}`);
 
     // Simulate a Coin Flip
@@ -49,7 +49,7 @@ class CoinFlip {
 
   // View how many points a specific player has
   @view({})
-  points_of({ player }: { player: string }): number {
+  points_of({ player }: { player: AccountId }): number {
     const points = this.points.get(player, {defaultValue: 0})
     near.log(`Points for ${player}: ${points}`)
     return points
