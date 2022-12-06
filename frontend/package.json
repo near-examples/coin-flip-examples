@@ -4,9 +4,14 @@
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
     "start": "./start.sh",
-    "build": "parcel build index.html --public-url ./"
+    "start:headless": "env-cmd -f '../contract/neardev/dev-account.env' parcel index.html",
+    "build": "parcel build index.html --public-url ./",
+    "test:e2e": "npm run start:headless & npm run cypress:run",
+    "cypress:run": "cypress run --config-file cypress/cypres.config.js",
+    "cypress:open": "cypress open --browser chromium --config-file cypress/cypres.config.js"
   },
   "devDependencies": {
+    "cypress": "^11.2.0",
     "env-cmd": "^10.1.0",
     "events": "^3.3.0",
     "nodemon": "^2.0.16",

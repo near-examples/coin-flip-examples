@@ -4,3 +4,6 @@ neardev
 yarn.lock
 .parcel-cache/
 dist
+**/videos
+**/screenshots
+.idea
