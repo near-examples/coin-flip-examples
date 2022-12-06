@@ -21,6 +21,7 @@ context('coin flip example', () => {
     cy.contains('button', 'Next').click();
     cy.contains('button', 'Connect').click();
     cy.contains('button', 'Sign out').should('be.visible');
+    cy.wait(5000);
     cy.get('.points').then($points => {
       let currentPoints = Number($points.text());
       for (let i = 0; i < 5; i ++) {
