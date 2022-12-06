@@ -24,7 +24,7 @@ describe('coin flip example', () => {
     cy.wait(5000);
     cy.get('.points').then($points => {
       let currentPoints = Number($points.text());
-      for (let i = 0; i < 20; i ++) {
+      for (let i = 0; i < 10; i ++) {
         cy.get('.points').then($points => {
           cy.wait(1000);
           const p = Number($points.text());
