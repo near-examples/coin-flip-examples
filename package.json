@@ -11,6 +11,7 @@
     "test": "npm run build:contract && npm run test:unit && npm run test:integration",
     "test:unit": "cd contract && npm test",
     "test:integration": "cd integration-tests && npm test -- -- \"./contract/build/contract.wasm\"",
+    "test:e2e": "cd frontend && npm run test:e2e",
     "postinstall": "cd frontend && npm install && cd .. && cd integration-tests && npm install && cd .. && cd contract && npm install"
   },
   "devDependencies": {
