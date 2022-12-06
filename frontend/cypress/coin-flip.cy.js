@@ -1,8 +1,8 @@
 const SEED = Cypress.env('seed')
 
-Cypress.on('uncaught:exception', (err, runnable) => {
-  return false;
-})
+// Cypress.on('uncaught:exception', (err, runnable) => {
+//   return false;
+// })
 
 describe('coin flip example', () => {
   beforeEach(() => {
