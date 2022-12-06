@@ -26,7 +26,7 @@ context('coin flip example', () => {
       let currentPoints = Number($points.text());
       for (let i = 0; i < 5; i ++) {
         cy.get('.points').then($points => {
-          cy.wait(1000);
+          cy.wait(5000);
           const p = Number($points.text());
           if (p !== currentPoints) {
             throw new Error(`(1) expected points: ${currentPoints} actual: ${p}`);
@@ -34,7 +34,7 @@ context('coin flip example', () => {
           cy.contains('button', 'Tails').click();
           cy.get('.status').should('contain.text', 'Status: Asking the contract to flip a coin');
           cy.get('.status').should('not.contain.text', 'Status: Asking the contract to flip a coin');
-          cy.wait(1000);
+          cy.wait(5000);
           cy.get('.points').then($points => {
             const p = Number($points.text());
             if (p !== currentPoints + 1 && p !== currentPoints - 1) {
@@ -44,7 +44,7 @@ context('coin flip example', () => {
             cy.contains('button', 'Heads').click();
             cy.get('.status').should('contain.text', 'Status: Asking the contract to flip a coin');
             cy.get('.status').should('not.contain.text', 'Status: Asking the contract to flip a coin');
-            cy.wait(1000);
+            cy.wait(5000);
             cy.get('.points').then($points => {
               const p = Number($points.text());
               if (p !== currentPoints + 1 && p !== currentPoints - 1) {
