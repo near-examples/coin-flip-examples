@@ -1,15 +1,15 @@
-const SEED = Cypress.env('seed')
-
 // Cypress.on('uncaught:exception', (err, runnable) => {
 //   return false;
 // })
 
-describe('coin flip example', () => {
+const SEED = Cypress.env('seed')
+
+context('coin flip example', () => {
   beforeEach(() => {
     cy.visit('/')
   })
 
-  it('test flow', async () => {
+  it('test flow', () => {
 
     cy.get('button#sign-in-button').should('be.visible');
     cy.contains('button', 'Sign in with NEAR Wallet').click();
@@ -21,10 +21,9 @@ describe('coin flip example', () => {
     cy.contains('button', 'Next').click();
     cy.contains('button', 'Connect').click();
     cy.contains('button', 'Sign out').should('be.visible');
-    cy.wait(5000);
     cy.get('.points').then($points => {
       let currentPoints = Number($points.text());
-      for (let i = 0; i < 10; i ++) {
+      for (let i = 0; i < 5; i ++) {
         cy.get('.points').then($points => {
           cy.wait(1000);
           const p = Number($points.text());
@@ -38,7 +37,7 @@ describe('coin flip example', () => {
           cy.get('.points').then($points => {
             const p = Number($points.text());
             if (p !== currentPoints + 1 && p !== currentPoints - 1) {
-              throw new Error(`expected points: ${currentPoints +- 1} actual: ${p}`);
+              throw new Error(`expected points: ${currentPoints + - 1} actual: ${p}`);
             }
             currentPoints = p;
             cy.contains('button', 'Heads').click();
@@ -48,7 +47,7 @@ describe('coin flip example', () => {
             cy.get('.points').then($points => {
               const p = Number($points.text());
               if (p !== currentPoints + 1 && p !== currentPoints - 1) {
-                throw new Error(`expected points: ${currentPoints +- 1} actual: ${p}`);
+                throw new Error(`expected points: ${currentPoints + - 1} actual: ${p}`);
               }
               currentPoints = p;
             })
