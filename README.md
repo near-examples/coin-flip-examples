@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/Gitpod-Ready-orange)](https://gitpod.io/#/https://github.com/near-examples/coin-flip-js)
 [![](https://img.shields.io/badge/Contract-js-yellow)](https://docs.near.org/develop/contracts/anatomy)
 [![](https://img.shields.io/badge/Frontend-JS-yellow)](https://docs.near.org/develop/integrate/frontend)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnear-examples%2Fcoin-flip-js%2Fbadge&style=flat&label=Tests)](https://actions-badge.atrox.dev/near-examples/coin-flip-js/goto)
+[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnear-examples%2Fcoin-flip-js%2Fbadge%3Fref%3Dmain&style=flat&label=Tests&ref=main)](https://actions-badge.atrox.dev/near-examples/coin-flip-js/goto?ref=main)
 
 Coin Flip is a game were the player tries to guess the outcome of a coin flip. It is one of the simplest contracts implementing random numbers.
 
