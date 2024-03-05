@@ -1,9 +1,14 @@
-node_modules
-build
-neardev
-yarn.lock
-.parcel-cache/
-dist
-**/videos
-**/screenshots
-.idea
+# Rust
+**/target
+**/Cargo.lock
+
+# TypeScript
+**/package-lock.json
+**/node_modules/
+**/build/
+**/yarn.lock
+**/.tsimp
+
+# Frontend
+**/dist/
+**/.parcel-cache

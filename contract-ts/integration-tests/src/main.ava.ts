@@ -1,5 +1,6 @@
 import { Worker, NearAccount } from 'near-workspaces';
 import anyTest, { TestFn } from 'ava';
+import * as path from 'path';
 
 const test = anyTest as TestFn<{
   worker: Worker;
@@ -12,10 +13,10 @@ test.beforeEach(async (t) => {
 
   // Deploy contract
   const root = worker.rootAccount;
-  const contract = await root.createSubAccount('test-account');
 
   // Get wasm file path from package.json test script in folder above
-  await contract.deploy(process.argv[2]);
+  const contractPath =  path.join(__dirname, "../../build/contract.wasm");
+  const contract = await root.devDeploy(contractPath);
 
   // Save state for test runs, it is unique for each test
   t.context.worker = worker;

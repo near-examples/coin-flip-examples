@@ -1,0 +1,14 @@
+[package]
+name = "sandbox"
+version = "1.0.0"
+publish = false
+edition = "2021"
+
+[dev-dependencies]
+tokio = { version = "1.36.0", features = ["full"] }
+near-workspaces = "0.10.0"
+serde_json = { version = "1.0.114", features = ["arbitrary_precision"] }
+
+[[example]]
+name = "sandbox"
+path = "src/tests.rs"
