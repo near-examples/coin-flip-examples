@@ -59,11 +59,9 @@ impl Contract {
 
       // Check if their guess was right and modify the points accordingly
       if outcome.eq(&player_guess) {
-          player_points = player_points + 1;
+        player_points = player_points + 1;
       } else {
-          if player_points > 0 {
-              player_points = player_points - 1;
-          }
+        player_points = player_points.saturating_sub(1);
       };
 
       log_str(&format!("player_points: {player_points}"));
