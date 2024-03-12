@@ -45,35 +45,38 @@ flip_coin({ player_guess }: { player_guess: Side  }): Side {
 
 <br />
 
-## 1. Build and Deploy the Contract
-You can automatically compile and deploy the contract in the NEAR testnet by running:
+## 1. Build and Test the Contract
+You can automatically compile and test the contract in the NEAR testnet by running:
 
 ```bash
-npm run deploy
-```
-
-Once finished, check the `neardev/dev-account` file to find the address in which the contract was deployed:
-
-```bash
-cat ./neardev/dev-account
-# e.g. dev-1659899566943-21539992274727
+npm run test
 ```
 
 <br />
 
-## 2. Get the Score
+## 2. Create Account and Deploy the Contract
+You can create a new account and deploy the contract on it by running:
+
+```bash
+near create-account <your-account>.testnet --useFaucet
+near deploy <your-account>.testnet build/contract.wasm
+```
+
+<br />
+
+## 3. Get the Score
 `points_of` performs read-only operations, therefore it is a `view` method.
 
 `View` methods can be called for **free** by anyone, even people **without a NEAR account**!
 
 ```bash
 # Use near-cli to get the points
-near view <dev-account> points_of '{"player": "<dev-account>"}'
+near view <your-account> points_of '{"player": "<dev-account>"}'
 ```
 
 <br />
 
-## 3. Flip a Coin and Try to Guess the Outcome
+## 4. Flip a Coin and Try to Guess the Outcome
 `flip_coin` takes a guess ("heads" or "tails"), simulates a coin flip and gives/removes points to the player.
 
 It changes the contract's state, for which it is a `call` method.
@@ -82,17 +85,17 @@ It changes the contract's state, for which it is a `call` method.
 
 ```bash
 # Use near-cli to play
-near call <dev-account> flip_coin '{"player_guess":"tails"}' --accountId <dev-account>
+near call <your-account> flip_coin '{"player_guess":"tails"}' --accountId <your-account>
 ```
 
-**Tip:** If you would like to call `flip_coin` using your own account, first login into NEAR using:
+**Tip:** If you would like to call `flip_coin` using another account, first login into NEAR using:
 
 ```bash
 # Use near-cli to login your NEAR account
 near login
 ```
 
-and then use the logged account to sign the transaction: `--accountId <your-account>`.
+and then use the logged account to sign the transaction: `--accountId <another-account>`.
 
 ## A Note on Random Numbers
 Generating random numbers in an adversarial environment such as a blockchain is very difficult. This spawns from

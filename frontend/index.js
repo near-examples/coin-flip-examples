@@ -1,9 +1,9 @@
 import 'regenerator-runtime/runtime';
-import {Wallet} from './near-wallet';
+import { Wallet } from './near-wallet';
 
 // When creating the wallet you can optionally ask to create an access key
 // Having the key enables to call non-payable methods without interrupting the user to sign
-const CONTRACT_ADDRESS = process.env.CONTRACT_NAME || "coin-flip.near-examples.near"
+const CONTRACT_ADDRESS = process.env.CONTRACT_NAME || "coinflip.near-examples.testnet"
 const wallet = new Wallet({ createAccessKeyFor: CONTRACT_ADDRESS })
 
 // Setup on page load
@@ -25,7 +25,7 @@ $get('#choose-heads').addEventListener('click', () => player_choose('heads'));
 $get('#choose-tails').addEventListener('click', () => player_choose('tails'));
 
 // Executed when the player chooses a side
-async function player_choose (side) {
+async function player_choose(side) {
   reset_buttons()
   start_flip_animation()
   set_status("Asking the contract to flip a coin")
@@ -53,7 +53,7 @@ async function player_choose (side) {
   fetchScore();
 }
 
-async function fetchScore () {
+async function fetchScore() {
   console.log(wallet.accountId)
   const score = await wallet.viewMethod({
     contractId: CONTRACT_ADDRESS,
@@ -67,7 +67,7 @@ async function fetchScore () {
 }
 
 // Display the signed-out-flow container
-function signedOutFlow () {
+function signedOutFlow() {
   document.querySelectorAll('#signed-in-flow').forEach(el => {
     el.style.display = 'none';
   });
@@ -81,7 +81,7 @@ function signedOutFlow () {
 }
 
 // Displaying the signed in flow container and fill in account-specific data
-function signedInFlow () {
+function signedInFlow() {
   document.querySelectorAll('#signed-in-flow').forEach(el => {
     el.style.display = 'block';
   });
@@ -96,21 +96,21 @@ function signedInFlow () {
 }
 
 // Aux methods to simplify handling the interface
-function set_status (message) {
+function set_status(message) {
   document.querySelectorAll('[data-behavior=status]').forEach(el => {
     el.innerText = message;
   });
 }
 
-function reset_buttons () {
+function reset_buttons() {
   $get(`#choose-heads`).style.backgroundColor = "var(--secondary)"
   $get(`#choose-tails`).style.backgroundColor = "var(--secondary)"
 }
 
-function start_flip_animation () {
+function start_flip_animation() {
   $get('#coin').style.animation = 'flip 2s linear 0s infinite';
 }
 
-function stop_flip_animation_in (side) {
+function stop_flip_animation_in(side) {
   $get('#coin').style.animation = `flip-${side} 1s linear 0s 1 forwards`;
 }

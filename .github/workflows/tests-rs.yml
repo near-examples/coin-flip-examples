@@ -1,0 +1,14 @@
+name: Tests Contract RS
+on: push
+jobs:
+  workflows:
+    strategy:
+      matrix:
+        platform: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.platform }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install and test modules
+        run: |
+          cd ./contract-rs
+          cargo test

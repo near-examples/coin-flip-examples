@@ -1,51 +1,26 @@
-# Coin Flip 🪙 
+# Coin Flip Examples 🪙 
+
 [![](https://img.shields.io/badge/⋈%20Examples-Basics-green)](https://docs.near.org/tutorials/welcome)
-[![](https://img.shields.io/badge/Gitpod-Ready-orange)](https://gitpod.io/#/https://github.com/near-examples/coin-flip-js)
-[![](https://img.shields.io/badge/Contract-js-yellow)](https://docs.near.org/develop/contracts/anatomy)
-[![](https://img.shields.io/badge/Frontend-JS-yellow)](https://docs.near.org/develop/integrate/frontend)
-[![Build Status](https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2Fnear-examples%2Fcoin-flip-js%2Fbadge%3Fref%3Dmain&style=flat&label=Tests&ref=main)](https://actions-badge.atrox.dev/near-examples/coin-flip-js/goto?ref=main)
+[![](https://img.shields.io/badge/Contract-JS-yellow)](contract-ts)
+[![](https://img.shields.io/badge/Contract-Rust-red)](contract-rs)
+[![](https://img.shields.io/badge/Frontend-JS-yellow)](frontend)
+![example workflow](https://github.com/near-examples/coin-flip-examples/actions/workflows/tests-ts.yml/badge.svg)
+![example workflow](https://github.com/near-examples/coin-flip-examples/actions/workflows/tests-rs.yml/badge.svg)
 
-Coin Flip is a game were the player tries to guess the outcome of a coin flip. It is one of the simplest contracts implementing random numbers.
+This repository contains examples of a simple coin flip contract in both JavaScript and Rust, as well as a frontend interacting with a deployed coin flip smart contract. 
 
-
-# What This Example Shows
-
-1. How to store and retrieve information in the NEAR network.
-2. How to integrate a smart contract in a web frontend.
-3. How to generate random numbers in a contract.
+- [Coin Flip Contract - JavaScript](contract-ts)
+- [Coin Flip Contract - Rust](contract-ts)
+- [Coin Flip Frontend](frontend)
 
 <br />
 
-# Quickstart
+# What These Examples Show
 
-Clone this repository locally or [**open it in gitpod**](https://gitpod.io/#/https://github.com/near-examples/coin-flip-js). Then follow these steps:
+1. How to generate a random number.
 
-### 1. Install Dependencies
-```bash
-npm install
-```
-
-### 2. Test the Contract
-Deploy your contract in a sandbox and simulate interactions from users.
-
-```bash
-npm test
-```
-
-### 3. Deploy the Contract
-Build the contract and deploy it in a testnet account
-```bash
-npm run deploy
-```
-
-### 4. Start the Frontend
-Start the web application to interact with your smart contract 
-```bash
-npm start
-```
-
----
+<br />
 
 # Learn More
-1. Learn more about the contract through its [README](./contract/README.md).
+1. Learn more about the contract through its [README](./contract-ts/README.md).
 2. Check [**our documentation**](https://docs.near.org/develop/welcome).
