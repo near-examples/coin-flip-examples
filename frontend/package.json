@@ -3,33 +3,31 @@
   "version": "1.0.0",
   "license": "(MIT AND Apache-2.0)",
   "scripts": {
-    "start": "./start.sh",
-    "start:headless": "env-cmd -f '../contract/neardev/dev-account.env' parcel index.html",
+    "start": "parcel index.html",
     "build": "parcel build index.html --public-url ./",
     "test:e2e": "npm run start:headless & npm run cypress:run",
     "cypress:run": "cypress run --config-file cypress/cypres.config.js",
     "cypress:open": "cypress open --browser chromium --config-file cypress/cypres.config.js"
   },
   "devDependencies": {
-    "cypress": "^11.2.0",
-    "env-cmd": "^10.1.0",
+    "cypress": "^13.6.6",
     "events": "^3.3.0",
-    "nodemon": "^2.0.16",
+    "nodemon": "^3.1.0",
     "parcel": "^2.7.0",
     "process": "^0.11.10"
   },
   "dependencies": {
-    "@near-wallet-selector/core": "^7.0.0",
-    "@near-wallet-selector/ledger": "^7.0.0",
-    "@near-wallet-selector/math-wallet": "^7.0.0",
-    "@near-wallet-selector/meteor-wallet": "^7.0.0",
-    "@near-wallet-selector/modal-ui": "^7.0.0",
-    "@near-wallet-selector/my-near-wallet": "^7.0.0",
-    "@near-wallet-selector/near-wallet": "^7.0.0",
-    "@near-wallet-selector/nightly": "^7.0.0",
-    "@near-wallet-selector/nightly-connect": "^7.0.0",
-    "@near-wallet-selector/sender": "^7.0.0",
-    "@near-wallet-selector/wallet-connect": "^7.0.0",
-    "near-api-js": "^0.44.2"
+    "@near-wallet-selector/core": "^8.9.5",
+    "@near-wallet-selector/ledger": "^8.9.5",
+    "@near-wallet-selector/math-wallet": "^8.9.5",
+    "@near-wallet-selector/meteor-wallet": "^8.9.5",
+    "@near-wallet-selector/modal-ui": "^8.9.5",
+    "@near-wallet-selector/my-near-wallet": "^8.9.5",
+    "@near-wallet-selector/near-wallet": "^8.9.3",
+    "@near-wallet-selector/nightly": "^8.9.5",
+    "@near-wallet-selector/nightly-connect": "^8.7.0",
+    "@near-wallet-selector/sender": "^8.9.5",
+    "@near-wallet-selector/wallet-connect": "^8.9.5",
+    "near-api-js": "^3.0.3"
   }
 }
