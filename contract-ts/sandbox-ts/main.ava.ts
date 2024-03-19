@@ -1,18 +1,13 @@
-import { setDefaultResultOrder } from 'dns'; setDefaultResultOrder('ipv4first'); // temp fix for node > v17
-
 import { Worker, NearAccount } from 'near-workspaces';
 import anyTest, { TestFn } from 'ava';
-import * as path from 'path';
+import { setDefaultResultOrder } from 'dns'; setDefaultResultOrder('ipv4first'); // temp fix for node >v17
 
 // Global context
-let worker: Worker;
-let accounts: Record<string, NearAccount>;
+const test = anyTest as TestFn<{ worker: Worker, accounts: Record<string, NearAccount> }>;
 
-const test = anyTest as TestFn<{}>;
-
-test.before(async (t) => {
-  // Init the worker and start a Sandbox server
-  worker = await Worker.init();
+test.beforeEach(async (t) => {
+  // Create sandbox, accounts, deploy contracts, etc.
+  const worker = t.context.worker = await Worker.init();
 
   // Deploy contract
   const root = worker.rootAccount;
@@ -22,24 +17,24 @@ test.before(async (t) => {
   await contract.deploy(process.argv[2]);
 
   // Save state for test runs, it is unique for each test
-  accounts = { root, contract };
+  t.context.accounts = { root, contract };
 });
 
-test.after.always(async (t) => {
+test.afterEach.always(async (t) => {
   // Stop Sandbox server
-  await worker.tearDown().catch((error) => {
+  await t.context.worker.tearDown().catch((error) => {
     console.log('Failed to stop the Sandbox:', error);
   });
 });
 
 test('by default the user has no points', async (t) => {
-  const { root, contract } = accounts;
+  const { root, contract } = t.context.accounts;
   const points: number = await contract.view('points_of', { player: root.accountId });
   t.is(points, 0);
 });
 
 test('the points are correctly computed', async (t) => {
-  const { root, contract } = accounts;
+  const { root, contract } = t.context.accounts;
 
   let counter: {[key:string]:number} = { 'heads': 0, 'tails': 0 }
   let expected_points = 0;
