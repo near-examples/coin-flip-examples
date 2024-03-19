@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "near-sdk-js build src/contract.ts build/contract.wasm",
-    "test": "ava -- ./build/contract.wasm"
+    "test": "$npm_execpath build && ava -- ./build/contract.wasm"
   },
   "dependencies": {
     "near-cli": "^4.0.10",
