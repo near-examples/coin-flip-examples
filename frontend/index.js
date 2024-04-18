@@ -17,7 +17,7 @@ window.onload = async () => {
     signedOutFlow();
   }
 };
-////
+//// Hi guys, i'm testing git bash
 // Button clicks
 const $get = (e) => document.querySelector(e);
 $get("#sign-in-button").addEventListener("click", () => wallet.signIn());
