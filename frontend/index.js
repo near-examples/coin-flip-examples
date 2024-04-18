@@ -18,6 +18,7 @@ window.onload = async () => {
   }
 };
 //// Hi guys, i'm testing git bash
+//ok
 // Button clicks
 const $get = (e) => document.querySelector(e);
 $get("#sign-in-button").addEventListener("click", () => wallet.signIn());
