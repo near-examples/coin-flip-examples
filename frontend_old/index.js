@@ -36,7 +36,7 @@ async function player_choose(side) {
     method: 'flip_coin',
     args: { player_guess: side }
   });
-
+  console.log("outcome",outcome)
   // UI
   set_status(`The outcome was ${outcome}`)
   stop_flip_animation_in(outcome)
