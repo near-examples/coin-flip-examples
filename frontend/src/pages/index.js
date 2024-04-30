@@ -16,7 +16,7 @@ export default function Home() {
 	useEffect(() => {
 		setLoggedIn(!!signedAccountId);
 
-		if (signedAccountId) {
+		if (signedAccountId & wallet) {
 			updateScore();
 		}
 	}, [signedAccountId]);
@@ -39,17 +39,19 @@ export default function Home() {
 			setStatus("You were right, you win a point!");
 		} else {
 			setStatus("You were wrong, you lost a point");
-		}
+		} 
 
-		await updateScore();
+		updateScore();
 	};
 
 	const updateScore = async () => {
+		
 		const score = await wallet.viewMethod({
 			contractId: CoinFlipContract,
 			method: "points_of",
 			args: { player: wallet.accountId },
 		});
+
 		setPoints(score);
 	};
 	let color = result === side ? "btn-success" : "btn-danger";
