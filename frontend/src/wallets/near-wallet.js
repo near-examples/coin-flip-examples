@@ -51,7 +51,7 @@ export class Wallet {
         accountChangeHook(signedAccount);
       });
 
-    this.accountId = accountId;
+    return accountId;
   };
 
   /**

@@ -16,7 +16,7 @@ export default function Home() {
 	useEffect(() => {
 		setLoggedIn(!!signedAccountId);
 
-		if (signedAccountId & wallet) {
+		if (signedAccountId) {
 			updateScore();
 		}
 	}, [signedAccountId]);
@@ -49,7 +49,7 @@ export default function Home() {
 		const score = await wallet.viewMethod({
 			contractId: CoinFlipContract,
 			method: "points_of",
-			args: { player: wallet.accountId },
+			args: { player: signedAccountId },
 		});
 
 		setPoints(score);
