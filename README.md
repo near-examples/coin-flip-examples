@@ -3,7 +3,7 @@
 [![](https://img.shields.io/badge/⋈%20Examples-Basics-green)](https://docs.near.org/tutorials/welcome)
 [![](https://img.shields.io/badge/Contract-JS-yellow)](contract-ts)
 [![](https://img.shields.io/badge/Contract-Rust-red)](contract-rs)
-[![](https://img.shields.io/badge/Frontend-JS-yellow)](frontend)
+[![](https://img.shields.io/badge/Frontend-Next.js-blue)](frontend)
 ![example workflow](https://github.com/near-examples/coin-flip-examples/actions/workflows/tests-ts.yml/badge.svg)
 ![example workflow](https://github.com/near-examples/coin-flip-examples/actions/workflows/tests-rs.yml/badge.svg)
 
@@ -17,10 +17,11 @@ This repository contains examples of a simple coin flip contract in both JavaScr
 
 # What These Examples Show
 
-1. How to generate a random number.
+1. How to generate a random number
+2. How to interact with a smart contract on NEAR
 
 <br />
 
 # Learn More
 1. Learn more about the contract through its [README](./contract-ts/README.md).
-2. Check [**our documentation**](https://docs.near.org/develop/welcome).
+2. Check [**our documentation**]([https://docs.near.org/develop/welcome](https://docs.near.org/build/welcome)).
