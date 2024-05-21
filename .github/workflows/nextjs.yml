@@ -42,7 +42,7 @@ jobs:
         run: |
           cd ./frontend
           yarn
-          yarn next build
+          yarn build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

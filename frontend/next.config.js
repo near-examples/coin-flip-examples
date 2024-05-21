@@ -5,7 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: isProduction? '/coin-flip-examples' : '',
+  basePath: isProduction ? '/coin-flip-examples' : '',
   output: "export",
   distDir: 'build',
   reactStrictMode: true,

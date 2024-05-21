@@ -3,18 +3,24 @@ import Tail from "./tails.png";
 import Head from "./heads.png";
 import { useEffect, useState } from "react";
 
-const Coin = ({ loading, result }) => {
+const Coin = ({ side }) => {
 	const [animation, setAnimation] = useState({});
 
 	useEffect(() => {
-		if (loading) {
-			setAnimation({ animation: "flip 2s linear 0s infinite" });
-		} else if (!loading && result) {
-			setAnimation({ animation: `flip-${result} 1s linear 0s 1 forwards` });
-		} else {
-			setAnimation({});
+		switch (side) {
+			case "heads":
+				setAnimation({ animation: "flip-heads 1s linear 0s 1 forwards" });
+				break;
+			case "tails":
+				setAnimation({ animation: "flip-tails 1s linear 0s 1 forwards" });
+				break;
+			case "loading":
+				setAnimation({ animation: "flip 2s linear 0s infinite" });
+				break;
+			default:
+				setAnimation({});
 		}
-	}, [loading, result]);
+	}, [side]);
 
 	return (
 		<>

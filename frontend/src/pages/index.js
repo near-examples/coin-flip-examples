@@ -1,51 +1,46 @@
+import { useEffect, useState, useContext } from "react";
+
 import Coin from "@/components/Coin";
+import { NearContext } from "@/context";
 import { CoinFlipContract } from "@/config";
-import { useStore } from "@/layout";
 import styles from "@/styles/app.module.css";
-import { useEffect, useState } from "react";
 
 export default function Home() {
-	const { signedAccountId, wallet } = useStore();
-	const [loading, setLoading] = useState(false);
-	const [result, setResult] = useState(null);
+	const { signedAccountId, wallet } = useContext(NearContext);
+	const [side, setSide] = useState(null);
 	const [status, setStatus] = useState("Waiting for user input");
 	const [points, setPoints] = useState(0);
-	const [side, setSide] = useState();
+	const [choice, setChoice] = useState();
 
-	const [loggedIn, setLoggedIn] = useState(false);
 	useEffect(() => {
-		setLoggedIn(!!signedAccountId);
-
-		if (signedAccountId) {
-			updateScore();
-		}
+		if (signedAccountId) updateScore();
 	}, [signedAccountId]);
 
-	const handleChoice = async (side) => {
+	const handleChoice = async (guess) => {
 		setStatus("Asking the contract to flip a coin");
-		setSide(side);
-		setLoading(true);
-		setResult(null);
+		setChoice(guess);
+		setSide("loading");
+
 		let outcome = await wallet.callMethod({
 			contractId: CoinFlipContract,
 			method: "flip_coin",
-			args: { player_guess: side },
+			args: { player_guess: guess },
 		});
-		setLoading(false);
-		setResult(outcome);
+
+		setSide(outcome);
 		setStatus(`The outcome was ${outcome}`);
 
-		if (outcome === side) {
-			setStatus("You were right, you win a point!");
+		if (guess === outcome) {
+			setStatus("You were right, you won a point!");
 		} else {
 			setStatus("You were wrong, you lost a point");
-		} 
+		}
 
 		updateScore();
 	};
 
 	const updateScore = async () => {
-		
+
 		const score = await wallet.viewMethod({
 			contractId: CoinFlipContract,
 			method: "points_of",
@@ -54,18 +49,19 @@ export default function Home() {
 
 		setPoints(score);
 	};
-	let color = result === side ? "btn-success" : "btn-danger";
+
+	let color = choice === side ? "btn-success" : "btn-danger";
 
 	return (
 		<main className={styles.main}>
 			<div className="container">
-				{loggedIn || (
-					<h1 className="text-center">
+				{!signedAccountId && (
+					<h2 className="text-center">
 						<strong>Welcome! Login to Play</strong>
-					</h1>
+					</h2>
 				)}
-				<Coin loading={loading} result={result} />
-				{loggedIn && (
+				<Coin side={side} />
+				{signedAccountId && (
 					<div className="container mt-5">
 						<h2 className="text-center mb-4">
 							What do you think is coming next?
@@ -73,7 +69,7 @@ export default function Home() {
 						<div className="d-flex justify-content-center">
 							<button
 								className={`btn me-2 ${
-									side == "heads" && result ? color : "btn-primary"
+									choice === "heads" && side !== 'loading' ? color : "btn-primary"
 								}`}
 								onClick={() => handleChoice("heads")}
 							>
@@ -81,7 +77,7 @@ export default function Home() {
 							</button>
 							<button
 								className={`btn ${
-									side == "tails" && result ? color : "btn-primary"
+									choice === "tails" && side !== 'loading' ? color : "btn-primary"
 								}`}
 								onClick={() => handleChoice("tails")}
 							>
@@ -92,8 +88,8 @@ export default function Home() {
 							<strong>Status</strong>: {status}
 						</p>
 						<h3 className="mt-4">
-							Your points so far:{" "}
-							<span className="badge bg-secondary">{points}</span>
+							Your points so far:
+							<span className="ms-2 badge bg-secondary">{points}</span>
 						</h3>
 					</div>
 				)}
