@@ -18,7 +18,7 @@ This repository contains examples of a simple coin flip contract in both JavaScr
 # What These Examples Show
 
 1. How to generate a random number
-2. How to interact with a smart contract on NEAR
+2. How to interact with a smart contract on NEAR from a frontend
 
 <br />
 
