@@ -1,40 +1,33 @@
 {
-  "name": "my-near-app",
+  "name": "guest-book",
   "version": "1.0.0",
-  "license": "(MIT AND Apache-2.0)",
-  "scripts": {
-    "start": "parcel index.html",
-    "build": "parcel build index.html --public-url ./",
-    "test:e2e": "npm run start:headless & npm run cypress:run",
-    "cypress:run": "cypress run --config-file cypress/cypres.config.js",
-    "cypress:open": "cypress open --browser chromium --config-file cypress/cypres.config.js"
+  "private": true,
+  "engines": {
+    "node": ">=18"
   },
-  "devDependencies": {
-    "buffer": "^5.5.0||^6.0.0",
-    "crypto-browserify": "^3.12.0",
-    "cypress": "^13.6.6",
-    "events": "^3.3.0",
-    "https-browserify": "^1.0.0",
-    "nodemon": "^3.1.0",
-    "parcel": "^2.7.0",
-    "process": "^0.11.10",
-    "punycode": "^1.4.1",
-    "stream-browserify": "^3.0.0",
-    "stream-http": "^3.1.0",
-    "url": "^0.11.0",
-    "vm-browserify": "^1.1.2"
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
-    "@near-wallet-selector/core": "^8.9.5",
-    "@near-wallet-selector/math-wallet": "^8.9.5",
-    "@near-wallet-selector/meteor-wallet": "^8.9.5",
-    "@near-wallet-selector/modal-ui": "^8.9.5",
-    "@near-wallet-selector/my-near-wallet": "^8.9.5",
-    "@near-wallet-selector/near-wallet": "^8.9.3",
-    "@near-wallet-selector/nightly": "^8.9.5",
-    "@near-wallet-selector/nightly-connect": "^8.7.0",
-    "@near-wallet-selector/sender": "^8.9.5",
-    "@near-wallet-selector/wallet-connect": "^8.9.5",
-    "near-api-js": "^3.0.3"
+    "@near-wallet-selector/core": "^8.9.7",
+    "@near-wallet-selector/here-wallet": "^8.9.7",
+    "@near-wallet-selector/modal-ui": "^8.9.7",
+    "@near-wallet-selector/my-near-wallet": "^8.9.7",
+    "bootstrap": "^5",
+    "bootstrap-icons": "^1.11.3",
+    "near-api-js": "^3.0.4",
+    "next": "14.2.3",
+    "react": "^18",
+    "react-dom": "^18"
+  },
+  "overrides": {
+    "near-api-js": "^3.0.4"
+  },
+  "devDependencies": {
+    "eslint": "^8",
+    "eslint-config-next": "14.2.3"
   }
 }
