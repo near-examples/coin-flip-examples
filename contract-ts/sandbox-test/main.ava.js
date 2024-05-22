@@ -1,10 +1,12 @@
-import { Worker, NearAccount } from 'near-workspaces';
-import anyTest, { TestFn } from 'ava';
+import anyTest from 'ava';
+import { Worker } from 'near-workspaces';
 import { setDefaultResultOrder } from 'dns'; setDefaultResultOrder('ipv4first'); // temp fix for node >v17
 
-// Global context
-const test = anyTest as TestFn<{ worker: Worker, accounts: Record<string, NearAccount> }>;
-
+/**
+ *  @typedef {import('near-workspaces').NearAccount} NearAccount
+ *  @type {import('ava').TestFn<{worker: Worker, accounts: Record<string, NearAccount>}>}
+ */
+const test = anyTest;
 test.beforeEach(async (t) => {
   // Create sandbox, accounts, deploy contracts, etc.
   const worker = t.context.worker = await Worker.init();
@@ -29,26 +31,27 @@ test.afterEach.always(async (t) => {
 
 test('by default the user has no points', async (t) => {
   const { root, contract } = t.context.accounts;
-  const points: number = await contract.view('points_of', { player: root.accountId });
+  const points = await contract.view('points_of', { player: root.accountId });
   t.is(points, 0);
 });
 
 test('the points are correctly computed', async (t) => {
   const { root, contract } = t.context.accounts;
 
-  let counter: {[key:string]:number} = { 'heads': 0, 'tails': 0 }
+  let counter = { 'heads': 0, 'tails': 0 }
   let expected_points = 0;
 
   for(let i=0; i<10; i++){
     const res = await root.call(contract, 'flip_coin', { 'player_guess': 'heads' })
-    counter[res as string] += 1;
+    counter[res] += 1;
     expected_points += res == 'heads' ? 1 : -1;
     expected_points = Math.max(expected_points, 0);
   }
 
   // A binomial(10, 1/2) has a P(x>2) ~ 0.98%
   t.true(counter['heads'] >= 2);
+  t.true(counter['tails'] >= 2);
 
-  const points: number = await contract.view('points_of', { 'player': root.accountId });
+  const points = await contract.view('points_of', { 'player': root.accountId });
   t.is(points, expected_points);
 });
