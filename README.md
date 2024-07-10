@@ -1,3 +1,6 @@
+
+
+
 # Coin Flip Examples 🪙 
 
 [![](https://img.shields.io/badge/⋈%20Examples-Basics-green)](https://docs.near.org/tutorials/welcome)
