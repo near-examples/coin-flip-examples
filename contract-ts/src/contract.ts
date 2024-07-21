@@ -1,5 +1,6 @@
-import { NearBindgen, near, call, view, UnorderedMap } from 'near-sdk-js';
+import { NearBindgen, near, call, view, UnorderedMap, encode, decode } from 'near-sdk-js';
 import { AccountId } from 'near-sdk-js/lib/types';
+import * as borsh from 'borsh';
 
 type Side = 'heads' | 'tails'
 
@@ -12,7 +13,14 @@ function simulateCoinFlip(): Side {
 }
 
 
-@NearBindgen({})
+@NearBindgen({
+  serializer(value) {
+    return borsh.serialize(schema, value);
+  },
+  deserializer(value) {
+    return borsh.deserialize(schema, value);
+  },
+})
 class CoinFlip {
   points: UnorderedMap<number> = new UnorderedMap<number>("points");
 
@@ -30,7 +38,7 @@ class CoinFlip {
     const outcome = simulateCoinFlip();
 
     // Get the current player points
-    let player_points: number = this.points.get(player, { defaultValue: 0 })
+    let player_points: number = this.points.get(player, { defaultValue: 0, deserializer: donationDeserializer })
 
     // Check if their guess was right and modify the points accordingly
     if (player_guess == outcome) {
@@ -42,7 +50,10 @@ class CoinFlip {
     }
 
     // Store the new points
-    this.points.set(player, player_points)
+    this.points.set(player, player_points, {
+      serializer: donationSerializer,
+      deserializer: donationDeserializer
+    })
 
     return outcome
   }
@@ -50,8 +61,49 @@ class CoinFlip {
   // View how many points a specific player has
   @view({})
   points_of({ player }: { player: AccountId }): number {
-    const points = this.points.get(player, {defaultValue: 0})
+    const points = this.points.get(player, {defaultValue: 0, deserializer: donationDeserializer})
     near.log(`Points for ${player}: ${points}`)
     return points
   }
 }
+
+const pointSchema: borsh.Schema = 'u32';
+
+function donationSerializer(value) {
+  const serialized = borsh.serialize(pointSchema, value).toString();
+
+  return encode(serialized);
+}
+
+function donationDeserializer(value) {
+  const decoded = decode(value);
+
+  // @ts-expect-error string[] also works
+  const bytes = Uint8Array.from(decoded.split(','));
+
+  return borsh.deserialize(pointSchema, bytes);
+}
+
+const schema: borsh.Schema = {
+  struct: {
+    // UnorderedMap
+    points: {
+      struct: {
+        prefix: 'string',
+        // Vector
+        _keys: {
+          struct: {
+            prefix: 'string',
+            length: 'u32',
+          },
+        },
+        // LookupMap
+        values: {
+          struct: {
+            keyPrefix: 'string',
+          },
+        },
+      },
+    },
+  },
+};
