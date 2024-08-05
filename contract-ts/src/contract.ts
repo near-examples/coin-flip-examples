@@ -16,10 +16,10 @@ function simulateCoinFlip(): Side {
 class CoinFlip {
   points: UnorderedMap<number> = new UnorderedMap<number>("points");
 
-  /*
-    Flip a coin. Pass in the side (heads or tails) and a random number will be chosen
-    indicating whether the flip was heads or tails. If you got it right, you get a point.
-  */
+  static schema = {
+    points: { class: UnorderedMap, value: 'number' }
+  }
+
   @call({})
   flip_coin({ player_guess }: { player_guess: Side }): Side {
     // Check who called the method
@@ -50,7 +50,7 @@ class CoinFlip {
   // View how many points a specific player has
   @view({})
   points_of({ player }: { player: AccountId }): number {
-    const points = this.points.get(player, {defaultValue: 0})
+    const points = this.points.get(player, { defaultValue: 0 })
     near.log(`Points for ${player}: ${points}`)
     return points
   }
