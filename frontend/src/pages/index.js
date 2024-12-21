@@ -32,11 +32,11 @@ export default function Home() {
 
 		if (guess === outcome) {
 			setStatus("You were right, you won a point!");
+			setPoints(points+1);
 		} else {
 			setStatus("You were wrong, you lost a point");
+			setPoints(points ? points - 1 : 0);
 		}
-
-		updateScore();
 	};
 
 	const updateScore = async () => {
