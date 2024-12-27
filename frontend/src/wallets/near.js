@@ -152,7 +152,7 @@ export class Wallet {
     const provider = new providers.JsonRpcProvider({ url: network.nodeUrl });
 
     // Retrieve transaction result from the network
-    const transaction = await provider.txStatus(txhash, 'unnused');
+    const transaction = await provider.txStatus(txhash, 'unused');
     return providers.getTransactionLastResult(transaction);
   };
 
