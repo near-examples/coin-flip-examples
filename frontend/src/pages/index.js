@@ -13,7 +13,14 @@ export default function Home() {
 	const [choice, setChoice] = useState();
 
 	useEffect(() => {
-		if (signedAccountId) updateScore();
+		if (!signedAccountId) return;
+
+		wallet.viewMethod({
+			contractId: CoinFlipContract,
+			method: "points_of",
+			args: { player: signedAccountId },
+		}).then((score) => setPoints(score))
+
 	}, [signedAccountId]);
 
 	const handleChoice = async (guess) => {
@@ -32,22 +39,11 @@ export default function Home() {
 
 		if (guess === outcome) {
 			setStatus("You were right, you won a point!");
+			setPoints(points + 1);
 		} else {
 			setStatus("You were wrong, you lost a point");
+			setPoints(points ? points - 1 : 0);
 		}
-
-		updateScore();
-	};
-
-	const updateScore = async () => {
-
-		const score = await wallet.viewMethod({
-			contractId: CoinFlipContract,
-			method: "points_of",
-			args: { player: signedAccountId },
-		});
-
-		setPoints(score);
 	};
 
 	let color = choice === side ? "btn-success" : "btn-danger";
@@ -68,17 +64,15 @@ export default function Home() {
 						</h2>
 						<div className="d-flex justify-content-center">
 							<button
-								className={`btn me-2 ${
-									choice === "heads" && side !== 'loading' ? color : "btn-primary"
-								}`}
+								className={`btn me-2 ${choice === "heads" && side !== 'loading' ? color : "btn-primary"
+									}`}
 								onClick={() => handleChoice("heads")}
 							>
 								Heads
 							</button>
 							<button
-								className={`btn ${
-									choice === "tails" && side !== 'loading' ? color : "btn-primary"
-								}`}
+								className={`btn ${choice === "tails" && side !== 'loading' ? color : "btn-primary"
+									}`}
 								onClick={() => handleChoice("tails")}
 							>
 								Tails
