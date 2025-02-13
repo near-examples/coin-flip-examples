@@ -1,5 +1,5 @@
 {
-  "name": "guest-book",
+  "name": "coin-flip",
   "version": "1.0.0",
   "private": true,
   "engines": {
@@ -13,21 +13,25 @@
   },
   "dependencies": {
     "@near-js/providers": "^1.0.1",
-    "@near-wallet-selector/bitte-wallet": "^8.9.14",
-    "@near-wallet-selector/core": "^8.9.14",
-    "@near-wallet-selector/ethereum-wallets": "^8.9.14",
-    "@near-wallet-selector/here-wallet": "^8.9.14",
-    "@near-wallet-selector/ledger": "^8.9.14",
-    "@near-wallet-selector/meteor-wallet": "^8.9.14",
-    "@near-wallet-selector/modal-ui": "^8.9.14",
-    "@near-wallet-selector/my-near-wallet": "^8.9.14",
-    "@near-wallet-selector/near-mobile-wallet": "^8.9.14",
-    "@near-wallet-selector/sender": "^8.9.14",
-    "@near-wallet-selector/welldone-wallet": "^8.9.14",
+    "@near-wallet-selector/bitte-wallet": "^8.10.0",
+    "@near-wallet-selector/core": "^8.10.0",
+    "@near-wallet-selector/ethereum-wallets": "^8.10.0",
+    "@near-wallet-selector/here-wallet": "^8.10.0",
+    "@near-wallet-selector/hot-wallet": "^8.10.0",
+    "@near-wallet-selector/ledger": "^8.10.0",
+    "@near-wallet-selector/meteor-wallet": "^8.10.0",
+    "@near-wallet-selector/meteor-wallet-app": "^8.10.0",
+    "@near-wallet-selector/modal-ui": "^8.10.0",
+    "@near-wallet-selector/my-near-wallet": "^8.10.0",
+    "@near-wallet-selector/near-mobile-wallet": "^8.10.0",
+    "@near-wallet-selector/nightly": "^8.10.0",
+    "@near-wallet-selector/react-hook": "^8.9.15",
+    "@near-wallet-selector/sender": "^8.10.0",
+    "@near-wallet-selector/welldone-wallet": "^8.10.0",
     "@web3modal/wagmi": "^5.1.11",
     "bootstrap": "^5",
     "bootstrap-icons": "^1.11.3",
-    "near-api-js": "^4.0.3",
+    "near-api-js": "^5.0.1",
     "next": "14.2.5",
     "react": "^18",
     "react-dom": "^18",
@@ -35,7 +39,7 @@
   },
   "devDependencies": {
     "encoding": "^0.1.13",
-    "eslint": "^8",
-    "eslint-config-next": "14.2.3"
+        "eslint": "^9.16.0",
+    "eslint-config-next": "15.0.3"
   }
 }
