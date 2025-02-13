@@ -1,12 +1,13 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 
 import Coin from "@/components/Coin";
-import { NearContext } from "@/context";
+import { useWalletSelector } from '@near-wallet-selector/react-hook';
 import { CoinFlipContract } from "@/config";
 import styles from "@/styles/app.module.css";
 
+
 export default function Home() {
-	const { signedAccountId, wallet } = useContext(NearContext);
+	const { signedAccountId, callFunction, viewFunction } = useWalletSelector();
 	const [side, setSide] = useState(null);
 	const [status, setStatus] = useState("Waiting for user input");
 	const [points, setPoints] = useState(0);
@@ -14,8 +15,7 @@ export default function Home() {
 
 	useEffect(() => {
 		if (!signedAccountId) return;
-
-		wallet.viewMethod({
+       viewFunction({
 			contractId: CoinFlipContract,
 			method: "points_of",
 			args: { player: signedAccountId },
@@ -28,7 +28,7 @@ export default function Home() {
 		setChoice(guess);
 		setSide("loading");
 
-		let outcome = await wallet.callMethod({
+		let outcome = await callFunction({
 			contractId: CoinFlipContract,
 			method: "flip_coin",
 			args: { player_guess: guess },
