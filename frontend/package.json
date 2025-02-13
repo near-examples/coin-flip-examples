@@ -39,7 +39,7 @@
   },
   "devDependencies": {
     "encoding": "^0.1.13",
-        "eslint": "^9.16.0",
+    "eslint": "^9.16.0",
     "eslint-config-next": "15.0.3"
   }
 }
