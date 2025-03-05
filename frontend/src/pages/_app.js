@@ -13,7 +13,7 @@ import { setupWelldoneWallet } from '@near-wallet-selector/welldone-wallet';
 import { WalletSelectorProvider } from '@near-wallet-selector/react-hook';
 import { Navigation } from '@/components/Navigation';
 import { NetworkId, CoinFlipContract } from '@/config';
-import { wagmiConfig, web3Modal } from '@/wallets/web3modal';
+import { wagmiAdapter, web3Modal } from '@/wallets/web3modal';
 
 import '@/styles/globals.css';
 import '@near-wallet-selector/modal-ui/styles.css';
@@ -22,7 +22,7 @@ const walletSelectorConfig = {
   network: NetworkId,
   createAccessKeyFor: CoinFlipContract,
   modules: [
-    setupEthereumWallets({ wagmiConfig, web3Modal, alwaysOnboardDuringSignIn: true }),
+    setupEthereumWallets({ wagmiConfig: wagmiAdapter.wagmiConfig, web3Modal }),
     setupBitteWallet(),
     setupMeteorWallet(),
     setupMeteorWalletApp({contractId: CoinFlipContract}),
