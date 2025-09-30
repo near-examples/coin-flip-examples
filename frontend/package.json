@@ -33,7 +33,7 @@
     "@wagmi/core": "^2.17.2",
     "bootstrap": "^5",
     "bootstrap-icons": "^1.11.3",
-    "next": "14.2.5",
+    "next": "^15",
     "react": "^18",
     "react-dom": "^18",
     "viem": "^2.30.5"
@@ -41,6 +41,7 @@
   "devDependencies": {
     "encoding": "^0.1.13",
     "eslint": "^9.16.0",
-    "eslint-config-next": "15.0.3"
+    "eslint-config-next": "15.0.3",
+    "typescript": "^5.9.2"
   }
 }

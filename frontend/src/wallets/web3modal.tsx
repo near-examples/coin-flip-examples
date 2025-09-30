@@ -20,17 +20,14 @@ const connectors = [
   }),
   injected({ shimDisconnect: true }),
 ];
-
 export const wagmiAdapter = new WagmiAdapter({
   projectId,
   connectors,
   networks: [nearTestnet],
 });
 
-// Preserve login state on page reload
 reconnect(wagmiAdapter.wagmiConfig);
 
-// Modal for login
 export const web3Modal = createAppKit({
   adapters: [wagmiAdapter],
   projectId,
