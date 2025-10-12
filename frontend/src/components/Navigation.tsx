@@ -1,11 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { useWalletSelector } from "@near-wallet-selector/react-hook";
+import { useNear } from "@/hooks/useNear";
 
 
 export const Navigation = () => {
-  const { signedAccountId, signIn, signOut } = useWalletSelector();
+  const { signedAccountId, signIn, signOut } = useNear();
 
   const [action, setAction] = useState<(() => void) | null>(null);
   const [label, setLabel] = useState<string>("Loading...");
