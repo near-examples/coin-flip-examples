@@ -44,7 +44,15 @@ export default function Home() {
         args: { player_guess: guess },
       });
 
-      const outcomeTyped = outcome as "heads" | "tails";
+      const result = (outcome as any)?.status?.SuccessValue;
+      const decodedResult = result 
+        ? JSON.parse(Buffer.from(result, 'base64').toString())
+        : null;
+      
+      const outcomeTyped = decodedResult as "heads" | "tails";
+
+      console.log("Coin flip outcome:", outcomeTyped);
+      
       setSide(outcomeTyped);
 
       if (guess === outcomeTyped) {
