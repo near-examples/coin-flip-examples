@@ -13,13 +13,16 @@ crate-type = ["cdylib", "rlib"]
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 [dependencies]
-near-sdk = { version = "5.7.0", features = ["legacy"] }
+near-sdk = { version = "5.29.0", features = ["legacy"] }
 
 [dev-dependencies]
-near-sdk = { version = "5.7.0", features = ["unit-testing"] }
-near-workspaces = { version = "0.16.0", features = ["unstable"] }
-tokio = { version = "1.12.0", features = ["full"] }
+near-sdk = { version = "5.29.0", features = ["unit-testing"] }
+near-sandbox = "0.3"
+near-api = "0.8"
+cargo-near-build = "0.11"
+tokio = { version = "1.48.0", features = ["full"] }
 serde_json = "1"
+testresult = "0.4.1"
 
 [profile.release]
 codegen-units = 1

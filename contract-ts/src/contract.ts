@@ -30,7 +30,7 @@ class CoinFlip {
     const outcome = simulateCoinFlip();
 
     // Get the current player points
-    let player_points: number = this.points.get(player, { defaultValue: 0 })
+    let player_points: number = this.points.get(player, { defaultValue: 0 }) ?? 0
 
     // Check if their guess was right and modify the points accordingly
     if (player_guess == outcome) {
@@ -50,7 +50,7 @@ class CoinFlip {
   // View how many points a specific player has
   @view({})
   points_of({ player }: { player: AccountId }): number {
-    const points = this.points.get(player, { defaultValue: 0 })
+    const points = this.points.get(player, { defaultValue: 0 }) ?? 0
     near.log(`Points for ${player}: ${points}`)
     return points
   }

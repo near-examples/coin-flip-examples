@@ -26,10 +26,10 @@ const Coin = ({ side }) => {
 		<>
 			<div id="coin" style={animation}>
 				<div className="heads">
-					<Image src={Tail} alt="Coin's tail" />
+					<Image src={Tail} alt="Coin's tail" priority />
 				</div>
 				<div className="tails">
-					<Image src={Head} alt="Coin's head" />
+					<Image src={Head} alt="Coin's head" priority />
 				</div>
 			</div>
 		</>
