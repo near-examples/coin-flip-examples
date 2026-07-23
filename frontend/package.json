@@ -12,35 +12,16 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@near-js/providers": "^1.0.1",
-    "@near-wallet-selector/bitte-wallet": "^9.0.2",
-    "@near-wallet-selector/core": "^9.0.2",
-    "@near-wallet-selector/ethereum-wallets": "^9.0.2",
-    "@near-wallet-selector/here-wallet": "^9.0.2",
-    "@near-wallet-selector/hot-wallet": "^9.0.2",
-    "@near-wallet-selector/ledger": "^9.0.2",
-    "@near-wallet-selector/meteor-wallet": "^9.0.2",
-    "@near-wallet-selector/meteor-wallet-app": "^9.0.2",
-    "@near-wallet-selector/modal-ui": "^9.0.2",
-    "@near-wallet-selector/my-near-wallet": "^9.0.2",
-    "@near-wallet-selector/near-mobile-wallet": "^9.0.2",
-    "@near-wallet-selector/nightly": "^9.0.2",
-    "@near-wallet-selector/react-hook": "^9.0.2",
-    "@near-wallet-selector/sender": "^9.0.2",
-    "@near-wallet-selector/welldone-wallet": "^9.0.2",
-    "@reown/appkit": "^1.7.7",
-    "@reown/appkit-adapter-wagmi": "^1.7.7",
-    "@wagmi/core": "^2.17.2",
-    "bootstrap": "^5",
-    "bootstrap-icons": "^1.11.3",
-    "next": "14.2.5",
-    "react": "^18",
-    "react-dom": "^18",
-    "viem": "^2.30.5"
+    "bootstrap": "^5.3.8",
+    "bootstrap-icons": "^1.13.1",
+    "near-api-js": "^7.2.0",
+    "near-connect-hooks": "^1.1.6",
+    "next": "16.2.10",
+    "react": "^19.2.7",
+    "react-dom": "^19.2.7"
   },
   "devDependencies": {
-    "encoding": "^0.1.13",
-    "eslint": "^9.16.0",
-    "eslint-config-next": "15.0.3"
+    "eslint": "^10.7.0",
+    "eslint-config-next": "16.2.10"
   }
 }

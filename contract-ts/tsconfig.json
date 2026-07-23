@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "experimentalDecorators": true,
-    "target": "es5",
+    "target": "es2020",
+    "module": "esnext",
+    "moduleResolution": "bundler",
     "noEmit": true
   },
   "exclude": [

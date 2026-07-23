@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react";
 
 import Coin from "@/components/Coin";
-import { useWalletSelector } from '@near-wallet-selector/react-hook';
+import { useNearWallet } from 'near-connect-hooks';
 import { CoinFlipContract } from "@/config";
 import styles from "@/styles/app.module.css";
 
 
 export default function Home() {
-	const { signedAccountId, callFunction, viewFunction } = useWalletSelector();
+	const { signedAccountId, callFunction, viewFunction } = useNearWallet();
 	const [side, setSide] = useState(null);
-	const [status, setStatus] = useState("Waiting for user input");
+	const [status, setStatus] = useState({ text: "Pick a side to flip the coin", tone: "secondary" });
 	const [points, setPoints] = useState(0);
 	const [choice, setChoice] = useState();
 
+	const flipping = side === "loading";
+
 	useEffect(() => {
 		if (!signedAccountId) return;
-       viewFunction({
+		viewFunction({
 			contractId: CoinFlipContract,
 			method: "points_of",
 			args: { player: signedAccountId },
@@ -24,7 +26,7 @@ export default function Home() {
 	}, [signedAccountId]);
 
 	const handleChoice = async (guess) => {
-		setStatus("Asking the contract to flip a coin");
+		setStatus({ text: "Asking the contract to flip a coin...", tone: "secondary" });
 		setChoice(guess);
 		setSide("loading");
 
@@ -35,59 +37,58 @@ export default function Home() {
 		});
 
 		setSide(outcome);
-		setStatus(`The outcome was ${outcome}`);
 
 		if (guess === outcome) {
-			setStatus("You were right, you won a point!");
-			setPoints(points + 1);
+			setStatus({ text: `It was ${outcome}. You won a point!`, tone: "success" });
+			setPoints((p) => p + 1);
 		} else {
-			setStatus("You were wrong, you lost a point");
-			setPoints(points ? points - 1 : 0);
+			setStatus({ text: `It was ${outcome}. You lost a point`, tone: "danger" });
+			setPoints((p) => (p ? p - 1 : 0));
 		}
 	};
 
-	let color = choice === side ? "btn-success" : "btn-danger";
+	const guessColor = choice === side ? "btn-success" : "btn-danger";
+	const buttonClass = (guess) =>
+		choice === guess && !flipping && side ? guessColor : "btn-primary";
 
 	return (
 		<main className={styles.main}>
-			<div className="container">
-				{!signedAccountId && (
-					<h2 className="text-center">
-						<strong>Welcome! Login to Play</strong>
-					</h2>
-				)}
-				<Coin side={side} />
-				{signedAccountId && (
-					<div className="container mt-5">
-						<h2 className="text-center mb-4">
-							What do you think is coming next?
-						</h2>
-						<div className="d-flex justify-content-center">
-							<button
-								className={`btn me-2 ${choice === "heads" && side !== 'loading' ? color : "btn-primary"
-									}`}
-								onClick={() => handleChoice("heads")}
-							>
-								Heads
-							</button>
-							<button
-								className={`btn ${choice === "tails" && side !== 'loading' ? color : "btn-primary"
-									}`}
-								onClick={() => handleChoice("tails")}
-							>
-								Tails
-							</button>
-						</div>
-						<p className="mt-3">
-							<strong>Status</strong>: {status}
-						</p>
-						<h3 className="mt-4">
-							Your points so far:
-							<span className="ms-2 badge bg-secondary">{points}</span>
-						</h3>
+			<Coin side={side} />
+
+			{!signedAccountId ? (
+				<div className="text-center mt-5">
+					<h1 className="fs-2 fw-bold">Heads or tails?</h1>
+					<p className="text-body-secondary mb-0">
+						Log in with your NEAR wallet, guess the flip, earn points.
+					</p>
+				</div>
+			) : (
+				<div className="text-center mt-5 w-100">
+					<h1 className="fs-2 fw-bold mb-4">What is coming next?</h1>
+					<div className="d-flex gap-3 justify-content-center">
+						<button
+							className={`btn btn-lg px-4 ${buttonClass("heads")}`}
+							disabled={flipping}
+							onClick={() => handleChoice("heads")}
+						>
+							Heads
+						</button>
+						<button
+							className={`btn btn-lg px-4 ${buttonClass("tails")}`}
+							disabled={flipping}
+							onClick={() => handleChoice("tails")}
+						>
+							Tails
+						</button>
 					</div>
-				)}
-			</div>
+					<p className={`mt-4 mb-1 fw-medium text-${status.tone}`} role="status">
+						{status.text}
+					</p>
+					<p className="text-body-secondary">
+						Your points: <strong className="text-body">{points}</strong>
+					</p>
+				</div>
+			)}
 		</main>
 	);
 }

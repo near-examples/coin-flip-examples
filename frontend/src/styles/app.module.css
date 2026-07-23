@@ -1,8 +1,11 @@
 .main {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  min-height: 100vh;
-  max-width: 600px; 
-  margin: 0 auto; 
+  align-items: center;
+  justify-content: center;
+  /* fill the viewport minus the navbar so the game centers vertically */
+  min-height: calc(100dvh - 72px);
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 1rem 1rem 3rem;
 }
