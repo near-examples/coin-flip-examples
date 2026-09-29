@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
-import { NearProvider } from 'near-connect-hooks';
+import { NearProvider } from '@/components/near-provider';
 
 import { Navigation } from '@/components/Navigation';
-import { NetworkId } from '@/config';
-
 import '@/styles/globals.css';
 
 export default function App({ Component, pageProps }) {
@@ -18,7 +16,7 @@ export default function App({ Component, pageProps }) {
   }, []);
 
   return (
-    <NearProvider config={{ network: NetworkId }}>
+    <NearProvider>
       <Navigation />
       <Component {...pageProps} />
     </NearProvider>

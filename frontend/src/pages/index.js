@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 
 import Coin from "@/components/Coin";
-import { useNearWallet } from 'near-connect-hooks';
+import { useNearWallet } from '@/components/near-provider';
 import { CoinFlipContract } from "@/config";
 import styles from "@/styles/app.module.css";
 

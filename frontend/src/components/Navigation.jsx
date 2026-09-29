@@ -1,11 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
-import { useNearWallet } from 'near-connect-hooks';
+import { useNearWallet } from '@/components/near-provider';
 
 import NearLogo from '../../public/near-logo.svg';
-import { CoinFlipContract } from '@/config';
-
 
 export const Navigation = () => {
   const { signedAccountId, signIn, signOut } = useNearWallet();
@@ -17,18 +15,10 @@ export const Navigation = () => {
       setAction(() => signOut);
       setLabel(`Logout ${signedAccountId}`);
     } else {
-      // Create a function-call access key for the contract during sign-in
-      // (replaces the old wallet-selector `createAccessKeyFor` option)
-      setAction(() => () => signIn({
-        addFunctionCallKey: {
-          contractId: CoinFlipContract,
-          allowMethods: { anyMethod: false, methodNames: ['flip_coin'] },
-          gasAllowance: { kind: 'limited', amount: '250000000000000000000000' },
-        },
-      }));
+      setAction(() => () => signIn());
       setLabel('Login');
     }
-  }, [signedAccountId]);
+  }, [signedAccountId, signIn, signOut]);
 
   return (
     <nav className="navbar bg-body border-bottom">
