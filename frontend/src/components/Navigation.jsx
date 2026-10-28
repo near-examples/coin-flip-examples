@@ -1,24 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 import { useNearWallet } from '@/components/near-provider';
 
 import NearLogo from '../../public/near-logo.svg';
 
 export const Navigation = () => {
   const { signedAccountId, signIn, signOut } = useNearWallet();
-  const [action, setAction] = useState(() => { });
-  const [label, setLabel] = useState('Loading...');
-
-  useEffect(() => {
-    if (signedAccountId) {
-      setAction(() => signOut);
-      setLabel(`Logout ${signedAccountId}`);
-    } else {
-      setAction(() => () => signIn());
-      setLabel('Login');
-    }
-  }, [signedAccountId, signIn, signOut]);
+  const action = signedAccountId ? signOut : signIn;
+  const label = signedAccountId ? `Logout ${signedAccountId}` : 'Login';
 
   return (
     <nav className="navbar bg-body border-bottom">
